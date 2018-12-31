@@ -1,7 +1,7 @@
-package org.sadtech.consultant.service.impl;
+package org.sadtech.consultant.database.service.impl;
 
-import org.sadtech.consultant.repository.SaveUnitRepositoriy;
-import org.sadtech.consultant.service.SaveUnitService;
+import org.sadtech.consultant.database.repository.SaveUnitRepositoriy;
+import org.sadtech.consultant.database.service.SaveUnitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,9 +1,8 @@
-package org.sadtech.consultant.entity;
+package org.sadtech.consultant.database.entity;
 
 import lombok.Data;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.util.List;
 
@@ -17,7 +16,7 @@ public class User {
     private String token;
     private String lastName;
     private String city;
-    private List<SocialNetworks> socialNetworks;
+//    private List<SocialNetworks> socialNetworks;
 
 
 }

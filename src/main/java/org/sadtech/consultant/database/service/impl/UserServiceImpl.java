@@ -1,8 +1,8 @@
-package org.sadtech.consultant.service.impl;
+package org.sadtech.consultant.database.service.impl;
 
-import org.sadtech.consultant.entity.User;
-import org.sadtech.consultant.repository.UserRepositoriy;
-import org.sadtech.consultant.service.UserService;
+import org.sadtech.consultant.database.entity.User;
+import org.sadtech.consultant.database.repository.UserRepositoriy;
+import org.sadtech.consultant.database.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

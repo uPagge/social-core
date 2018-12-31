@@ -1,18 +1,17 @@
-package org.sadtech.consultant.entity;
+package org.sadtech.consultant.database.entity;
 
 import lombok.Data;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-@Data
 @Entity
-public class Message {
+@Data
+public class Unit {
 
     @Id
-    private Long idMess;
-    private Long idUser;
+    private Long id;
     private String text;
-
+    private String wordKeys;
 
 }
