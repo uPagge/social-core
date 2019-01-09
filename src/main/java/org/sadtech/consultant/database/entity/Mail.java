@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Data
 @Entity
-public class Message {
+public class Mail {
 
     @Id
     @GeneratedValue
@@ -14,11 +14,10 @@ public class Message {
     private String text;
     private Long date;
     private String sourceMessage;
-    private String sex;
 
     @ManyToOne
-    @JoinColumn(name = "idUser", nullable = false)
-    private Person user;
+    @JoinColumn(name = "idPerson", nullable = false)
+    private Person person;
 
 
 }
