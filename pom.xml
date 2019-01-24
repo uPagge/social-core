@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.sadtech.vkbot</groupId>
+    <artifactId>core</artifactId>
+    <version>0.3-SNAPSHOT</version>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>7</source>
+                    <target>7</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <properties>
+        <gson.ver>2.8.5</gson.ver>
+        <vksdk.ver>0.5.13-SNAPSHOT</vksdk.ver>
+        <log4j.ver>1.2.17</log4j.ver>
+        <json.ver>20180813</json.ver>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>${gson.ver}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.vk.api</groupId>
+            <artifactId>sdk</artifactId>
+            <version>${vksdk.ver}</version>
+        </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>${log4j.ver}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>${json.ver}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.sadtech.autoresponder</groupId>
+            <artifactId>autoresponder</artifactId>
+            <version>1.1.2-SNAPHOT</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
+
+
+</project>
