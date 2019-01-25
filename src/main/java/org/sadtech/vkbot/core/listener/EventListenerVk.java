@@ -1,4 +1,4 @@
-package org.sadtech.vkbot.core.listener.impl;
+package org.sadtech.vkbot.core.listener;
 
 import com.google.gson.JsonObject;
 import com.vk.api.sdk.actions.LongPoll;
@@ -15,9 +15,8 @@ import org.sadtech.vkbot.core.repository.EventRepository;
 import org.sadtech.vkbot.core.repository.impl.EventRepositoryQueue;
 import org.sadtech.vkbot.core.service.EventService;
 import org.sadtech.vkbot.core.service.impl.EventServiceImpl;
-import org.sadtech.vkbot.core.listener.EventListenable;
 
-public class EventListenerVk implements EventListenable, Runnable {
+public class EventListenerVk implements EventListener, Runnable {
 
     public static final Logger log = Logger.getLogger(EventListenerVk.class);
 

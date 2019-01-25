@@ -6,9 +6,8 @@ import com.vk.api.sdk.exceptions.ApiException;
 import com.vk.api.sdk.exceptions.ClientException;
 import org.sadtech.vkbot.core.VkConnect;
 import org.sadtech.vkbot.core.entity.Person;
-import org.sadtech.vkbot.core.keyboard.KeyBoard;
 
-public class MailSanderVk {
+public class MailSanderVk implements MailSandler {
 
     private Person person;
     private VkApiClient vkApiClient;
@@ -29,20 +28,12 @@ public class MailSanderVk {
         this.person = person;
     }
 
-    public void sendText(String messageText) {
+    @Override
+    public void send(String text) {
         try {
-            vkApiClient.messages().send(groupActor).userId(person.getId()).message(messageText).execute();
+            vkApiClient.messages().send(groupActor).userId(person.getId()).message(text).execute();
         } catch (ApiException | ClientException e) {
             e.printStackTrace();
         }
     }
-
-    public void sendTextandKeyBoard(String message, KeyBoard keyBoard) {
-        try {
-            vkApiClient.messages().send(groupActor).userId(person.getId()).message(message).keyboard(keyBoard.getKeyboard(true).toString()).execute();
-        } catch (ApiException | ClientException e) {
-            e.printStackTrace();
-        }
-    }
-
 }
