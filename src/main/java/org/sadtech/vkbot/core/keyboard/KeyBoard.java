@@ -9,18 +9,24 @@ import java.util.List;
 public class KeyBoard {
 
     private List<LineKeyBoard> lineKeyBoards = new ArrayList<>();
+    private boolean oneTime;
 
     public KeyBoard() {
 
     }
 
-    public KeyBoard(List<LineKeyBoard> lineKeyBoards) {
+    public KeyBoard(List<LineKeyBoard> lineKeyBoards, boolean oneTime) {
         this.lineKeyBoards = lineKeyBoards;
+        this.oneTime = oneTime;
     }
 
-    public JSONObject getKeyboard(Boolean one_time) {
+    public void setOneTime(boolean oneTime) {
+        this.oneTime = oneTime;
+    }
+
+    public JSONObject getKeyboard() {
         JSONObject keyboard = new JSONObject();
-        keyboard.put("one_time", one_time);
+        keyboard.put("one_time", oneTime);
 
         JSONArray menuLine = new JSONArray();
         for (LineKeyBoard lineKeyboard : lineKeyBoards) {
@@ -47,6 +53,11 @@ public class KeyBoard {
 
         public Builder setLineKeyBoard(LineKeyBoard lineKeyBoard) {
             KeyBoard.this.lineKeyBoards.add(lineKeyBoard);
+            return this;
+        }
+
+        public Builder setOneTime(boolean oneTime) {
+            KeyBoard.this.oneTime = oneTime;
             return this;
         }
 

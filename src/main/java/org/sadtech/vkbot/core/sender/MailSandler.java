@@ -8,4 +8,6 @@ public interface MailSandler {
 
     void setPerson(Person person);
 
+    void send(String text, String keyBoard);
+
 }

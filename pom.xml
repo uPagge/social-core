@@ -33,7 +33,6 @@
         <vksdk.ver>0.5.13-SNAPSHOT</vksdk.ver>
         <log4j.ver>1.2.17</log4j.ver>
         <json.ver>20180813</json.ver>
-        <autoresponder.ver>1.1.2-SNAPHOT</autoresponder.ver>
     </properties>
 
     <dependencies>
@@ -56,11 +55,6 @@
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
             <version>${json.ver}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.sadtech.autoresponder</groupId>
-            <artifactId>autoresponder</artifactId>
-            <version>${autoresponder.ver}</version>
         </dependency>
     </dependencies>
 
