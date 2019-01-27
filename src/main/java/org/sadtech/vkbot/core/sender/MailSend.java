@@ -7,6 +7,7 @@ public class MailSend {
     private Integer idRecipient;
     private Float lat;
     private Float aLong;
+    private Integer stickerId;
 
     public MailSend() {
 
@@ -50,5 +51,13 @@ public class MailSend {
 
     public void setaLong(Float aLong) {
         this.aLong = aLong;
+    }
+
+    public Integer getStickerId() {
+        return stickerId;
+    }
+
+    public void setStickerId(Integer stickerId) {
+        this.stickerId = stickerId;
     }
 }

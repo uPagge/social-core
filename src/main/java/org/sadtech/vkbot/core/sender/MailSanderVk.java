@@ -24,9 +24,18 @@ public class MailSanderVk implements MailSandler {
         }
         if (mailSend.getKeyboard()!=null) {
             messages.keyboard(mailSend.getKeyboard());
+        } else {
+            messages.keyboard("{\"buttons\":[],\"one_time\":true}");
         }
         if (mailSend.getLat()!=null && mailSend.getaLong()!=null) {
             messages.lat(mailSend.getLat()).lng(mailSend.getaLong());
+        }
+        if (mailSend.getStickerId()!=null) {
+            try {
+                vkApiClient.messages().send(groupActor).peerId(mailSend.getIdRecipient()).stickerId(mailSend.getStickerId()).execute();
+            } catch (ApiException | ClientException e) {
+                e.printStackTrace();
+            }
         }
 
         try {
