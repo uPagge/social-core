@@ -7,7 +7,7 @@ public class ButtonKeyBoard {
     private String type = "text";
     private String payload;
     private String label;
-    private ColorButton color = ColorButton.DEFAULT;
+    private ColorButton color = ColorButton.PRIMARY;
 
     public ButtonKeyBoard() {
 
