@@ -31,7 +31,7 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public Queue<JsonObject> getJsonObjects() {
-        return eventRepository.getJsonObjects();
+        return eventRepository.getEventQueue();
     }
 
     @Override

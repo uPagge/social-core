@@ -7,6 +7,7 @@ import com.vk.api.sdk.exceptions.ClientException;
 import com.vk.api.sdk.queries.messages.MessagesSendQuery;
 import org.apache.log4j.Logger;
 import org.sadtech.vkbot.core.VkConnect;
+import org.sadtech.vkbot.core.entity.MailSend;
 
 public class MailSanderVk implements MailSandler {
 

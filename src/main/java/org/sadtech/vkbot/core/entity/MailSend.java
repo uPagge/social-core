@@ -1,4 +1,4 @@
-package org.sadtech.vkbot.core.sender;
+package org.sadtech.vkbot.core.entity;
 
 public class MailSend {
 

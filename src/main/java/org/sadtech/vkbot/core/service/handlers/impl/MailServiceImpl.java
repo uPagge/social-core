@@ -1,10 +1,11 @@
 package org.sadtech.vkbot.core.service.handlers.impl;
 
+import com.vk.api.sdk.objects.messages.Message;
 import org.apache.log4j.Logger;
 import org.sadtech.vkbot.core.entity.Mail;
 import org.sadtech.vkbot.core.entity.Person;
 import org.sadtech.vkbot.core.repository.MailRepository;
-import org.sadtech.vkbot.core.repository.impl.MailRepositoryList;
+import org.sadtech.vkbot.core.service.PersonService;
 import org.sadtech.vkbot.core.service.handlers.MailService;
 
 import java.util.ArrayList;
@@ -17,17 +18,30 @@ public class MailServiceImpl implements MailService {
     public static final Logger log = Logger.getLogger(MailServiceImpl.class);
 
     private MailRepository messageRepository;
+    private PersonService personService;
 
-    public MailServiceImpl() {
-        this.messageRepository = new MailRepositoryList();
-    }
-
-    public MailServiceImpl(MailRepository messageRepository) {
+    public MailServiceImpl(MailRepository messageRepository, PersonService personService) {
         this.messageRepository = messageRepository;
+        this.personService = personService;
     }
 
     @Override
     public void add(Mail mail) {
+        messageRepository.add(mail);
+        log.info("Сообщение добавлено в репозиторий");
+    }
+
+    @Override
+    public void add(Message message) {
+        Mail mail = new Mail();
+        mail.setDate(message.getDate());
+        mail.setBody(message.getBody());
+        mail.setId(message.getId());
+        if (!personService.checkPerson(message.getUserId())) {
+            personService.add(personService.createPerson(message.getUserId()));
+        }
+        mail.setPerson(personService.get(message.getUserId()));
+        log.info("Сообщение добавлено в репозиторий");
         messageRepository.add(mail);
     }
 
@@ -65,4 +79,5 @@ public class MailServiceImpl implements MailService {
         log.info("Запрос на получение сообщений в интервале от " + timeFrom + " до " + timeTo);
         return messageRepository.getMailByTime(timeFrom, timeTo);
     }
+
 }

@@ -1,17 +1,13 @@
 package org.sadtech.vkbot.core.repository;
 
-import com.google.gson.JsonObject;
-
 import java.util.Queue;
 
-public interface EventRepository {
+public interface EventRepository<T> {
 
-    void add(JsonObject jsonObject);
-
-    void remove(int id);
+    void add(T dataObject);
 
     void cleanAll();
 
-    Queue<JsonObject> getJsonObjects();
+    Queue<T> getEventQueue();
 
 }

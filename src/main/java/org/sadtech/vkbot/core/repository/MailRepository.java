@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface MailRepository {
 
-    void add(Mail message);
+    void add(Mail mail);
 
     List<Mail> getMailByTime(Integer timeFrom, Integer timeTo);
 

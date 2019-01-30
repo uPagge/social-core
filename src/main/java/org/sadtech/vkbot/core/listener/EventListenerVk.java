@@ -11,7 +11,6 @@ import com.vk.api.sdk.exceptions.ClientException;
 import com.vk.api.sdk.objects.groups.responses.GetLongPollServerResponse;
 import org.apache.log4j.Logger;
 import org.sadtech.vkbot.core.VkConnect;
-import org.sadtech.vkbot.core.repository.EventRepository;
 import org.sadtech.vkbot.core.repository.impl.EventRepositoryQueue;
 import org.sadtech.vkbot.core.service.EventService;
 import org.sadtech.vkbot.core.service.impl.EventServiceImpl;
@@ -36,10 +35,10 @@ public class EventListenerVk implements EventListener, Runnable {
         longPoll = new LongPoll(vk);
     }
 
-    public EventListenerVk(VkConnect vkConnect, EventRepository eventRepository) {
+    public EventListenerVk(VkConnect vkConnect, EventService eventService) {
         this.vk = vkConnect.getVkApiClient();
         this.actor = vkConnect.getGroupActor();
-        this.eventService = new EventServiceImpl(eventRepository);
+        this.eventService = eventService;
         longPoll = new LongPoll(vk);
     }
 
