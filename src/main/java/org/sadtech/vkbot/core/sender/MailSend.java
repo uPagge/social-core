@@ -60,4 +60,16 @@ public class MailSend {
     public void setStickerId(Integer stickerId) {
         this.stickerId = stickerId;
     }
+
+    @Override
+    public String toString() {
+        return "MailSend{" +
+                "message='" + message + '\'' +
+                ", keyboard='" + keyboard + '\'' +
+                ", idRecipient=" + idRecipient +
+                ", lat=" + lat +
+                ", aLong=" + aLong +
+                ", stickerId=" + stickerId +
+                '}';
+    }
 }

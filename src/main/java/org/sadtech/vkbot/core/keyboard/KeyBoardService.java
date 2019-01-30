@@ -4,9 +4,7 @@ import java.util.List;
 
 public class KeyBoardService {
 
-    private KeyBoard keyBoardYesNo = generateKeyBoardYesNo();
-
-    private KeyBoard generateKeyBoardYesNo() {
+    public static KeyBoard keyBoardYesNo() {
         ButtonKeyBoard yesButton = ButtonKeyBoard.builder().setColor(ColorButton.POSITIVE).setLabel("Да").setPayload("{\"button\": \"yes\"}").build();
         ButtonKeyBoard noButton = ButtonKeyBoard.builder().setColor(ColorButton.NEGATIVE).setLabel("Нет").setPayload("{\"button\": \"no\"}").build();
         LineKeyBoard lineKeyBoard = LineKeyBoard.builder().setButtonKeyBoard(yesButton).setButtonKeyBoard(noButton).build();
@@ -14,7 +12,7 @@ public class KeyBoardService {
         return keyBoard;
     }
 
-    public static KeyBoard verticalMenu(List<String> labelButtons) {
+    public static KeyBoard verticalMenuString(List<String> labelButtons) {
         KeyBoard keyBoard = new KeyBoard();
         for (String labelButton : labelButtons) {
             ButtonKeyBoard buttonKeyBoard = ButtonKeyBoard.builder().setLabel(labelButton).setType("text").setPayload("{\"button\": \"" + labelButton + "\"}").build();
@@ -23,7 +21,11 @@ public class KeyBoardService {
         return keyBoard;
     }
 
-    public KeyBoard getKeyBoardYesNo() {
-        return keyBoardYesNo;
+    public static KeyBoard verticalMenuButton(List<ButtonKeyBoard> buttonKeyBoards) {
+        KeyBoard keyBoard = new KeyBoard();
+        for (ButtonKeyBoard buttonKeyBoard : buttonKeyBoards) {
+            keyBoard.addLine(LineKeyBoard.builder().setButtonKeyBoard(buttonKeyBoard).build());
+        }
+        return keyBoard;
     }
 }
