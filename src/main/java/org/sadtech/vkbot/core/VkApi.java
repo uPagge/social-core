@@ -9,12 +9,14 @@ import com.vk.api.sdk.exceptions.ApiException;
 import com.vk.api.sdk.exceptions.ClientException;
 import com.vk.api.sdk.objects.users.UserMin;
 import com.vk.api.sdk.objects.users.UserXtrCounters;
+import com.vk.api.sdk.queries.users.UserField;
+import org.apache.log4j.Logger;
 
 import java.util.List;
 
 public class VkApi {
 
-//    public static final Logger log = Logger.getLogger(String.valueOf(VkApi.class));
+    public static final Logger log = Logger.getLogger(String.valueOf(VkApi.class));
 
     private VkApiClient vk;
     private GroupActor actor;
@@ -40,4 +42,13 @@ public class VkApi {
         return userMin;
     }
 
+    public String getUserUniver(Integer id) {
+        List<UserXtrCounters> temp = null;
+        try {
+            temp = vk.users().get(actor).userIds(String.valueOf(id)).fields(UserField.UNIVERSITIES).execute();
+        } catch (ApiException | ClientException e) {
+            e.printStackTrace();
+        }
+        return temp != null ? temp.get(0).getUniversities().get(0).getName() : null;
+    }
 }
