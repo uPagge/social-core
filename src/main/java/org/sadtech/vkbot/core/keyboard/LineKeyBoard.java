@@ -1,6 +1,6 @@
 package org.sadtech.vkbot.core.keyboard;
 
-import org.json.JSONArray;
+import com.google.gson.JsonArray;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,10 +17,10 @@ public class LineKeyBoard {
         this.buttonKeyBoards = buttonKeyBoards;
     }
 
-    public JSONArray getLine() {
-        JSONArray line = new JSONArray();
+    public JsonArray getLine() {
+        JsonArray line = new JsonArray();
         for (ButtonKeyBoard buttonKeyBoard : buttonKeyBoards) {
-            line.put(buttonKeyBoard.getButton());
+            line.add(buttonKeyBoard.getButton());
         }
         return line;
     }

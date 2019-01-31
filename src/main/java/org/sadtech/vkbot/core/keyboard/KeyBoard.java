@@ -1,7 +1,7 @@
 package org.sadtech.vkbot.core.keyboard;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,16 +24,16 @@ public class KeyBoard {
         this.oneTime = oneTime;
     }
 
-    public JSONObject getKeyboard() {
-        JSONObject keyboard = new JSONObject();
-        keyboard.put("one_time", oneTime);
+    public JsonObject getKeyboard() {
+        JsonObject keyboard = new JsonObject();
+        keyboard.addProperty("one_time", oneTime);
 
-        JSONArray menuLine = new JSONArray();
+        JsonArray menuLine = new JsonArray();
         for (LineKeyBoard lineKeyboard : lineKeyBoards) {
-            menuLine.put(lineKeyboard.getLine());
+            menuLine.add(lineKeyboard.getLine());
         }
 
-        keyboard.put("buttons", menuLine);
+        keyboard.add("buttons", menuLine);
         return keyboard;
     }
 

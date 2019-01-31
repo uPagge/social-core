@@ -1,11 +1,11 @@
 package org.sadtech.vkbot.core.distribution.impl;
 
+import com.vk.api.sdk.objects.messages.Message;
 import org.apache.log4j.Logger;
 import org.sadtech.vkbot.core.distribution.EventSubscribe;
-import org.sadtech.vkbot.core.entity.Mail;
 import org.sadtech.vkbot.core.service.handlers.MailService;
 
-public class TerminalSubscriber implements EventSubscribe<Mail> {
+public class TerminalSubscriber implements EventSubscribe<Message> {
 
     public static final Logger log = Logger.getLogger(TerminalSubscriber.class);
 
@@ -25,7 +25,7 @@ public class TerminalSubscriber implements EventSubscribe<Mail> {
     }
 
     @Override
-    public void update(Mail object) {
+    public void update(Message object) {
         log.info("Сообщение отправленно на добавление в репозиторий команд");
         mailService.add(object);
     }

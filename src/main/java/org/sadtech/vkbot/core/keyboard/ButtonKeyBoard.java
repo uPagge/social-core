@@ -1,6 +1,6 @@
 package org.sadtech.vkbot.core.keyboard;
 
-import org.json.JSONObject;
+import com.google.gson.JsonObject;
 
 public class ButtonKeyBoard {
 
@@ -20,18 +20,18 @@ public class ButtonKeyBoard {
         this.color = color;
     }
 
-    public JSONObject getButton() {
-        JSONObject newButton = new JSONObject();
-        newButton.put("color", color.toString().toLowerCase());
-        newButton.put("action", generateAction());
+    public JsonObject getButton() {
+        JsonObject newButton = new JsonObject();
+        newButton.addProperty("color", color.toString().toLowerCase());
+        newButton.add("action", generateAction());
         return newButton;
     }
 
-    private JSONObject generateAction() {
-        JSONObject action = new JSONObject();
-        action.put("type", type);
-        action.put("payload", payload);
-        action.put("label", label);
+    private JsonObject generateAction() {
+        JsonObject action = new JsonObject();
+        action.addProperty("type", type);
+        action.addProperty("payload", payload);
+        action.addProperty("label", label);
         return action;
     }
 

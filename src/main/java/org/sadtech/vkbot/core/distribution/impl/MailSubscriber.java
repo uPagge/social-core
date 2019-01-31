@@ -20,7 +20,7 @@ public class MailSubscriber implements EventSubscribe<JsonObject>, EventDistribu
     private MailService mailService;
 
     private Set<Integer> admins = new HashSet<>();
-    private Map<String, EventSubscribe> eventDistributionMap = new HashMap<>();
+    private Map<String, EventSubscribe<Message>> eventDistributionMap = new HashMap<>();
 
     public MailSubscriber(EventDistributable eventDistributable, MailService mailService) {
         this.mailService = mailService;

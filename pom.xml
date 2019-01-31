@@ -32,7 +32,6 @@
         <gson.ver>2.8.5</gson.ver>
         <vksdk.ver>0.5.13-SNAPSHOT</vksdk.ver>
         <log4j.ver>1.2.17</log4j.ver>
-        <json.ver>20180813</json.ver>
     </properties>
 
     <dependencies>
@@ -50,11 +49,6 @@
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
             <version>${log4j.ver}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.json</groupId>
-            <artifactId>json</artifactId>
-            <version>${json.ver}</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
