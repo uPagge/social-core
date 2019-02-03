@@ -9,9 +9,9 @@ import org.apache.log4j.Logger;
 import org.sadtech.vkbot.core.VkConnect;
 import org.sadtech.vkbot.core.VkInsertData;
 import org.sadtech.vkbot.core.entity.MailSend;
+import org.sadtech.vkbot.core.insert.InsertWords;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.List;
 
 public class MailSanderVk implements MailSandler {
 
@@ -28,12 +28,8 @@ public class MailSanderVk implements MailSandler {
         this.vkInsertData = new VkInsertData(vkConnect);
     }
 
-    @Override
-    public void send(MailSend mailSend) {
-        MessagesSendQuery messages = vkApiClient.messages().send(groupActor).peerId(mailSend.getIdRecipient());
-        if (mailSend.getMessage() != null) {
-            messages.message(insertWords(mailSend));
-        }
+    private MessagesSendQuery createMessage (MailSend mailSend, Integer idUser) {
+        MessagesSendQuery messages = vkApiClient.messages().send(groupActor).peerId(idUser);
         if (mailSend.getKeyboard() != null) {
             messages.keyboard(mailSend.getKeyboard());
         } else {
@@ -44,30 +40,39 @@ public class MailSanderVk implements MailSandler {
         }
         if (mailSend.getStickerId() != null) {
             try {
-                vkApiClient.messages().send(groupActor).peerId(mailSend.getIdRecipient()).stickerId(mailSend.getStickerId()).execute();
+                vkApiClient.messages().send(groupActor).peerId(idUser).stickerId(mailSend.getStickerId()).execute();
             } catch (ApiException | ClientException e) {
                 e.printStackTrace();
             }
         }
+        return messages;
+    }
 
+    @Override
+    public void send(MailSend mailSend, Integer idUser) {
+        MessagesSendQuery messages = createMessage(mailSend, idUser);
+        if (mailSend.getMessage() != null) {
+            messages.message(vkInsertData.insertWords(mailSend, idUser));
+        }
+        sendMessage(messages);
+    }
+
+    public void send(MailSend mailSend, Integer idUser, List<String> insertWords) {
+        MessagesSendQuery messages = createMessage(mailSend, idUser);
+        if (mailSend.getMessage() != null) {
+            InsertWords insert = new InsertWords();
+            insert.setInText(vkInsertData.insertWords(mailSend, idUser));
+            insert.insert(insertWords);
+            messages.message(insert.getOutText());
+        }
+        sendMessage(messages);
+    }
+
+    private void sendMessage(MessagesSendQuery messages) {
         try {
-            log.info(mailSend);
             messages.execute();
         } catch (ApiException | ClientException e) {
             e.printStackTrace();
         }
-    }
-
-    private String insertWords(MailSend mailSend) {
-        vkInsertData.setUserId(mailSend.getIdRecipient());
-
-        Pattern pattern = Pattern.compile("\\%(\\w+)%");
-        Matcher m = pattern.matcher(mailSend.getMessage());
-        StringBuffer result = new StringBuffer();
-        while (m.find()) {
-            m.appendReplacement(result, vkInsertData.insert(m.group(0)));
-        }
-        m.appendTail(result);
-        return result.toString();
     }
 }

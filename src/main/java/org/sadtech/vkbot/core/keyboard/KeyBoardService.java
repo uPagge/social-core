@@ -9,6 +9,7 @@ public class KeyBoardService {
         ButtonKeyBoard noButton = ButtonKeyBoard.builder().setColor(ColorButton.NEGATIVE).setLabel("Нет").setPayload("{\"button\": \"no\"}").build();
         LineKeyBoard lineKeyBoard = LineKeyBoard.builder().setButtonKeyBoard(yesButton).setButtonKeyBoard(noButton).build();
         KeyBoard keyBoard = KeyBoard.builder().setLineKeyBoard(lineKeyBoard).build();
+        keyBoard.setOneTime(true);
         return keyBoard;
     }
 
@@ -18,6 +19,7 @@ public class KeyBoardService {
             ButtonKeyBoard buttonKeyBoard = ButtonKeyBoard.builder().setLabel(labelButton).setType("text").setPayload("{\"button\": \"" + labelButton + "\"}").build();
             keyBoard.addLine(LineKeyBoard.builder().setButtonKeyBoard(buttonKeyBoard).build());
         }
+        keyBoard.setOneTime(true);
         return keyBoard;
     }
 
@@ -26,6 +28,7 @@ public class KeyBoardService {
         for (ButtonKeyBoard buttonKeyBoard : buttonKeyBoards) {
             keyBoard.addLine(LineKeyBoard.builder().setButtonKeyBoard(buttonKeyBoard).build());
         }
+        keyBoard.setOneTime(true);
         return keyBoard;
     }
 }

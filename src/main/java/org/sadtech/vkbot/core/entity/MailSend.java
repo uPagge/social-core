@@ -4,7 +4,6 @@ public class MailSend {
 
     private String message;
     private String keyboard;
-    private Integer idRecipient;
     private Float lat;
     private Float aLong;
     private Integer stickerId;
@@ -27,14 +26,6 @@ public class MailSend {
 
     public void setMessage(String message) {
         this.message = message;
-    }
-
-    public Integer getIdRecipient() {
-        return idRecipient;
-    }
-
-    public void setIdRecipient(Integer idRecipient) {
-        this.idRecipient = idRecipient;
     }
 
     public Float getLat() {
@@ -66,7 +57,6 @@ public class MailSend {
         return "MailSend{" +
                 "message='" + message + '\'' +
                 ", keyboard='" + keyboard + '\'' +
-                ", idRecipient=" + idRecipient +
                 ", lat=" + lat +
                 ", aLong=" + aLong +
                 ", stickerId=" + stickerId +

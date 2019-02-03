@@ -51,4 +51,16 @@ public class VkApi {
         }
         return temp != null ? temp.get(0).getUniversities().get(0).getName() : null;
     }
+
+    public String getUserCity(Integer id) {
+        List<UserXtrCounters> temp = null;
+        try {
+            temp = vk.users().get(actor).userIds(String.valueOf(id)).fields(UserField.CITY).execute();
+        } catch (ApiException | ClientException e) {
+            e.printStackTrace();
+        }
+        return temp != null ? temp.get(0).getCity().getTitle() : null;
+    }
+
+
 }
