@@ -1,11 +1,29 @@
 package org.sadtech.vkbot.core.distribution.impl;
 
-import com.google.gson.JsonObject;
+import com.vk.api.sdk.objects.messages.Message;
+import org.sadtech.vkbot.core.distribution.EventDistributable;
 import org.sadtech.vkbot.core.distribution.EventSubscribe;
+import org.sadtech.vkbot.core.service.handlers.MailService;
 
-public class MailChatSubscriber implements EventSubscribe<JsonObject> {
+public class MailChatSubscriber implements EventSubscribe<Message> {
+
+    private MailService mailService;
+
+    public MailChatSubscriber(MailService mailService, EventDistributable eventDistributable) {
+        this.mailService = mailService;
+        eventDistributable.registerSubscriber("chat", this);
+    }
+
+    public MailChatSubscriber(EventDistributable eventDistributable) {
+        eventDistributable.registerSubscriber("chat", this);
+    }
+
+    public void setMailService(MailService mailService) {
+        this.mailService = mailService;
+    }
+
     @Override
-    public void update(JsonObject object) {
-
+    public void update(Message message) {
+        mailService.add(message);
     }
 }

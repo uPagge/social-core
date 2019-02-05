@@ -42,7 +42,7 @@ public class MailServiceImpl implements MailService {
         Mail mail = new Mail();
         mail.setDate(message.getDate());
         if (!message.getFromId().equals(message.getPeerId())) {
-            mail.setBody(message.getBody().replaceFirst("\\[club([0-9]+)\\|\\@\\w+] ", ""));
+            mail.setBody(message.getBody().replaceFirst("\\[club([0-9]+)\\|\\@\\w+][ ,.]", ""));
         } else {
             mail.setBody(message.getBody());
         }

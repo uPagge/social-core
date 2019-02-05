@@ -47,11 +47,11 @@ public class MailSubscriber implements EventSubscribe<JsonObject>, EventDistribu
         log.info("Дистрибьютор получил событие - сообщение");
         Gson gson = new Gson();
         Message userMessage = gson.fromJson(object, Message.class);
-//        if (userMessage.getPeerId()>200000000) {
-//            if (eventDistributionMap.containsKey("chat")) {
-//                eventDistributionMap.get("chat").update(userMessage);
-//            }
-//        } else {
+        if (userMessage.getPeerId()>2000000000) {
+            if (eventDistributionMap.containsKey("chat")) {
+                eventDistributionMap.get("chat").update(userMessage);
+            }
+        } else {
             if (admins.contains(userMessage.getUserId())) {
                 log.info("Сообщение отправлено в репозиторий команд");
                 eventDistributionMap.get("terminal").update(userMessage);
@@ -59,8 +59,7 @@ public class MailSubscriber implements EventSubscribe<JsonObject>, EventDistribu
                 log.info("Сообщение отправленно на добавление в репозиторий");
                 mailService.add(userMessage);
             }
-//        }
-
+        }
     }
 
 
