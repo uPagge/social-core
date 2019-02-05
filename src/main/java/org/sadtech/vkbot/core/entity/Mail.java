@@ -7,6 +7,7 @@ public class Mail {
     private Integer id;
     private Integer date;
     private Person person;
+    private Integer peerId;
     private String body;
 
     public Mail() {
@@ -50,6 +51,14 @@ public class Mail {
 
     public void setBody(String body) {
         this.body = body;
+    }
+
+    public Integer getPeerId() {
+        return peerId;
+    }
+
+    public void setPeerId(Integer peerId) {
+        this.peerId = peerId;
     }
 
     @Override

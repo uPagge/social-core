@@ -18,13 +18,12 @@ public class MailSubscriber implements EventSubscribe<JsonObject>, EventDistribu
     public static final Logger log = Logger.getLogger(MailSubscriber.class);
 
     private MailService mailService;
-
     private Set<Integer> admins = new HashSet<>();
     private Map<String, EventSubscribe<Message>> eventDistributionMap = new HashMap<>();
 
     public MailSubscriber(EventDistributable eventDistributable, MailService mailService) {
         this.mailService = mailService;
-        eventDistributable.registerSubscriber("\"message_new\"", this);
+        eventDistributable.registerSubscriber("message_new", this);
     }
 
     public MailService getMailService() {
@@ -45,16 +44,23 @@ public class MailSubscriber implements EventSubscribe<JsonObject>, EventDistribu
 
     @Override
     public void update(JsonObject object) {
-        log.info("Дистрибьютор получил событие - сообщение от пользователя");
+        log.info("Дистрибьютор получил событие - сообщение");
         Gson gson = new Gson();
-        Message userMessage = gson.fromJson(object.getAsJsonObject("object"), Message.class);
-        if (admins.contains(userMessage.getUserId())) {
-            log.info("Сообщение отправлено в репозиторий команд");
-            eventDistributionMap.get("terminal").update(userMessage);
-        } else {
-            log.info("Сообщение отправленно на добавление в репозиторий");
-            mailService.add(userMessage);
-        }
+        Message userMessage = gson.fromJson(object, Message.class);
+//        if (userMessage.getPeerId()>200000000) {
+//            if (eventDistributionMap.containsKey("chat")) {
+//                eventDistributionMap.get("chat").update(userMessage);
+//            }
+//        } else {
+            if (admins.contains(userMessage.getUserId())) {
+                log.info("Сообщение отправлено в репозиторий команд");
+                eventDistributionMap.get("terminal").update(userMessage);
+            } else {
+                log.info("Сообщение отправленно на добавление в репозиторий");
+                mailService.add(userMessage);
+            }
+//        }
+
     }
 
 

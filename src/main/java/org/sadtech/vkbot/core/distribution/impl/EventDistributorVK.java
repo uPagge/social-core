@@ -26,8 +26,7 @@ public class EventDistributorVK implements EventDistributable, Runnable {
             if (eventService.getJsonObjects().peek() != null) {
                 JsonObject event = eventService.getJsonObjects().poll();
                 log.info("Главный дистрибьютор отправил событие дальше");
-                eventDistributionMap.get(event.get("type").toString()).update(event);
-
+                eventDistributionMap.get(event.get("type").getAsString()).update(event.getAsJsonObject("object"));
             }
         }
     }

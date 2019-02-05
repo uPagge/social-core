@@ -7,7 +7,7 @@ import com.vk.api.sdk.exceptions.ClientException;
 import com.vk.api.sdk.queries.messages.MessagesSendQuery;
 import org.apache.log4j.Logger;
 import org.sadtech.vkbot.core.VkConnect;
-import org.sadtech.vkbot.core.VkInsertData;
+import org.sadtech.vkbot.core.insert.VkInsertData;
 import org.sadtech.vkbot.core.entity.MailSend;
 import org.sadtech.vkbot.core.insert.InsertWords;
 
@@ -28,8 +28,8 @@ public class MailSanderVk implements MailSandler {
         this.vkInsertData = new VkInsertData(vkConnect);
     }
 
-    private MessagesSendQuery createMessage (MailSend mailSend, Integer idUser) {
-        MessagesSendQuery messages = vkApiClient.messages().send(groupActor).peerId(idUser);
+    private MessagesSendQuery createMessage (MailSend mailSend, Integer peerId) {
+        MessagesSendQuery messages = vkApiClient.messages().send(groupActor).peerId(peerId);
         if (mailSend.getKeyboard() != null) {
             messages.keyboard(mailSend.getKeyboard());
         } else {
@@ -40,7 +40,7 @@ public class MailSanderVk implements MailSandler {
         }
         if (mailSend.getStickerId() != null) {
             try {
-                vkApiClient.messages().send(groupActor).peerId(idUser).stickerId(mailSend.getStickerId()).execute();
+                vkApiClient.messages().send(groupActor).peerId(peerId).stickerId(mailSend.getStickerId()).execute();
             } catch (ApiException | ClientException e) {
                 e.printStackTrace();
             }
@@ -49,19 +49,40 @@ public class MailSanderVk implements MailSandler {
     }
 
     @Override
-    public void send(MailSend mailSend, Integer idUser) {
-        MessagesSendQuery messages = createMessage(mailSend, idUser);
+    public void send(MailSend mailSend, Integer peerId) {
+        MessagesSendQuery messages = createMessage(mailSend, peerId);
         if (mailSend.getMessage() != null) {
-            messages.message(vkInsertData.insertWords(mailSend, idUser));
+            messages.message(mailSend.getMessage());
         }
         sendMessage(messages);
     }
 
-    public void send(MailSend mailSend, Integer idUser, List<String> insertWords) {
-        MessagesSendQuery messages = createMessage(mailSend, idUser);
+    @Override
+    public void send(MailSend mailSend, Integer peerId, Integer userId) {
+        MessagesSendQuery messages = createMessage(mailSend, peerId);
+        if (mailSend.getMessage() != null) {
+            messages.message(vkInsertData.insertWords(mailSend, userId));
+        }
+        sendMessage(messages);
+    }
+
+    public void send(MailSend mailSend, Integer peerId, List<String> insertWords) {
+        MessagesSendQuery messages = createMessage(mailSend, peerId);
         if (mailSend.getMessage() != null) {
             InsertWords insert = new InsertWords();
-            insert.setInText(vkInsertData.insertWords(mailSend, idUser));
+            insert.setInText(mailSend.getMessage());
+            insert.insert(insertWords);
+            messages.message(insert.getOutText());
+        }
+        sendMessage(messages);
+    }
+
+    @Override
+    public void send(MailSend mailSend, Integer peerId, Integer userId, List<String> insertWords) {
+        MessagesSendQuery messages = createMessage(mailSend, peerId);
+        if (mailSend.getMessage() != null) {
+            InsertWords insert = new InsertWords();
+            insert.setInText(vkInsertData.insertWords(mailSend, peerId));
             insert.insert(insertWords);
             messages.message(insert.getOutText());
         }

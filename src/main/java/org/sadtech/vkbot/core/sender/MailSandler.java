@@ -6,8 +6,12 @@ import java.util.List;
 
 public interface MailSandler {
 
-    void send(MailSend mailSend, Integer idUser);
+    void send(MailSend mailSend, Integer peerId);
 
-    void send(MailSend mailSend, Integer idUser, List<String> insertWords);
+    void send(MailSend mailSend, Integer peerId, Integer userId);
+
+    void send(MailSend mailSend, Integer peerId, List<String> insertWords);
+
+    void send(MailSend mailSend, Integer peerId, Integer userId, List<String> insertWords);
 
 }

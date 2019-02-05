@@ -1,5 +1,7 @@
-package org.sadtech.vkbot.core;
+package org.sadtech.vkbot.core.insert;
 
+import org.sadtech.vkbot.core.VkApi;
+import org.sadtech.vkbot.core.VkConnect;
 import org.sadtech.vkbot.core.entity.MailSend;
 
 import java.util.regex.Matcher;
