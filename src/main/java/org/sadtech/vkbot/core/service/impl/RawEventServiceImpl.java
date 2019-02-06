@@ -3,17 +3,17 @@ package org.sadtech.vkbot.core.service.impl;
 import com.google.gson.JsonObject;
 import org.apache.log4j.Logger;
 import org.sadtech.vkbot.core.repository.EventRepository;
-import org.sadtech.vkbot.core.service.EventService;
+import org.sadtech.vkbot.core.service.RawEventService;
 
 import java.util.Queue;
 
-public class EventServiceImpl implements EventService {
+public class RawEventServiceImpl implements RawEventService {
 
-    public static final Logger log = Logger.getLogger(EventServiceImpl.class);
+    public static final Logger log = Logger.getLogger(RawEventServiceImpl.class);
 
     private EventRepository eventRepository;
 
-    public EventServiceImpl(EventRepository eventRepository) {
+    public RawEventServiceImpl(EventRepository eventRepository) {
         this.eventRepository = eventRepository;
     }
 

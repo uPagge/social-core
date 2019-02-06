@@ -5,7 +5,7 @@ import org.sadtech.vkbot.core.repository.EventRepository;
 
 import java.util.Queue;
 
-public interface EventService {
+public interface RawEventService {
 
     void cleanAll();
 

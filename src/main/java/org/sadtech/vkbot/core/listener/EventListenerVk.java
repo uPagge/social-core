@@ -12,8 +12,8 @@ import com.vk.api.sdk.objects.groups.responses.GetLongPollServerResponse;
 import org.apache.log4j.Logger;
 import org.sadtech.vkbot.core.VkConnect;
 import org.sadtech.vkbot.core.repository.impl.EventRepositoryQueue;
-import org.sadtech.vkbot.core.service.EventService;
-import org.sadtech.vkbot.core.service.impl.EventServiceImpl;
+import org.sadtech.vkbot.core.service.RawEventService;
+import org.sadtech.vkbot.core.service.impl.RawEventServiceImpl;
 
 public class EventListenerVk implements EventListener, Runnable {
 
@@ -22,7 +22,7 @@ public class EventListenerVk implements EventListener, Runnable {
     private VkApiClient vk;
     private GroupActor actor;
 
-    private EventService eventService;
+    private RawEventService rawEventService;
 
     private GetLongPollEventsQuery longPollEventsQuery;
     private LongPoll longPoll;
@@ -31,19 +31,19 @@ public class EventListenerVk implements EventListener, Runnable {
     public EventListenerVk(VkConnect vkConnect) {
         vk = vkConnect.getVkApiClient();
         actor = vkConnect.getGroupActor();
-        eventService = new EventServiceImpl(new EventRepositoryQueue());
+        rawEventService = new RawEventServiceImpl(new EventRepositoryQueue());
         longPoll = new LongPoll(vk);
     }
 
-    public EventListenerVk(VkConnect vkConnect, EventService eventService) {
+    public EventListenerVk(VkConnect vkConnect, RawEventService rawEventService) {
         this.vk = vkConnect.getVkApiClient();
         this.actor = vkConnect.getGroupActor();
-        this.eventService = eventService;
+        this.rawEventService = rawEventService;
         longPoll = new LongPoll(vk);
     }
 
-    public EventService getEventService() {
-        return eventService;
+    public RawEventService getRawEventService() {
+        return rawEventService;
     }
 
     public void listen() throws ClientException, ApiException {
@@ -56,7 +56,7 @@ public class EventListenerVk implements EventListener, Runnable {
                 log.info("Полученно событие от ВК");
                 log.info(eventsResponse.getUpdates());
                 for (JsonObject update : eventsResponse.getUpdates()) {
-                    eventService.add(update);
+                    rawEventService.add(update);
                 }
             }
             longPollEventsQuery = longPoll.getEvents(server.getServer(), server.getKey(), eventsResponse.getTs()).waitTime(20);
