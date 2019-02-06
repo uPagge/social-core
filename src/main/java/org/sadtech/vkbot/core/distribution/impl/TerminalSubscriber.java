@@ -3,7 +3,7 @@ package org.sadtech.vkbot.core.distribution.impl;
 import com.vk.api.sdk.objects.messages.Message;
 import org.apache.log4j.Logger;
 import org.sadtech.vkbot.core.distribution.EventSubscribe;
-import org.sadtech.vkbot.core.service.handlers.MailService;
+import org.sadtech.vkbot.core.service.distribution.MailService;
 
 public class TerminalSubscriber implements EventSubscribe<Message> {
 

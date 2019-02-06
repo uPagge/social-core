@@ -3,7 +3,7 @@ package org.sadtech.vkbot.core.distribution.impl;
 import com.vk.api.sdk.objects.messages.Message;
 import org.sadtech.vkbot.core.distribution.EventDistributable;
 import org.sadtech.vkbot.core.distribution.EventSubscribe;
-import org.sadtech.vkbot.core.service.handlers.MailService;
+import org.sadtech.vkbot.core.service.distribution.MailService;
 
 public class MailChatSubscriber implements EventSubscribe<Message> {
 

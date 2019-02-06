@@ -1,4 +1,4 @@
-package org.sadtech.vkbot.core.service.handlers;
+package org.sadtech.vkbot.core.service.distribution;
 
 import java.util.List;
 

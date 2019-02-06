@@ -1,4 +1,4 @@
-package org.sadtech.vkbot.core.service.handlers.impl;
+package org.sadtech.vkbot.core.service.distribution.impl;
 
 import com.vk.api.sdk.objects.messages.Message;
 import org.apache.log4j.Logger;
@@ -7,7 +7,7 @@ import org.sadtech.vkbot.core.entity.Person;
 import org.sadtech.vkbot.core.repository.MailRepository;
 import org.sadtech.vkbot.core.repository.impl.MailRepositoryList;
 import org.sadtech.vkbot.core.service.PersonService;
-import org.sadtech.vkbot.core.service.handlers.MailService;
+import org.sadtech.vkbot.core.service.distribution.MailService;
 
 import java.util.ArrayList;
 import java.util.HashSet;
