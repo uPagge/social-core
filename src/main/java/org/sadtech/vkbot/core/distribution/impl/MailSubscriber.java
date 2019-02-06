@@ -52,7 +52,7 @@ public class MailSubscriber implements EventSubscribe<JsonObject>, EventDistribu
                 eventDistributionMap.get("chat").update(userMessage);
             }
         } else {
-            if (admins.contains(userMessage.getUserId())) {
+            if (admins.contains(userMessage.getUserId()) && eventDistributionMap.containsKey("terminal")) {
                 log.info("Сообщение отправлено в репозиторий команд");
                 eventDistributionMap.get("terminal").update(userMessage);
             } else {

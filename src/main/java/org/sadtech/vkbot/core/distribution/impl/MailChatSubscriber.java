@@ -9,7 +9,7 @@ public class MailChatSubscriber implements EventSubscribe<Message> {
 
     private MailService mailService;
 
-    public MailChatSubscriber(MailService mailService, EventDistributable eventDistributable) {
+    public MailChatSubscriber(EventDistributable eventDistributable, MailService mailService) {
         this.mailService = mailService;
         eventDistributable.registerSubscriber("chat", this);
     }

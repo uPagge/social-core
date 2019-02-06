@@ -13,16 +13,16 @@ import org.sadtech.vkbot.core.insert.InsertWords;
 
 import java.util.List;
 
-public class MailSanderVk implements MailSandler {
+public class MailSenderVk implements MailSent {
 
-    public static final Logger log = Logger.getLogger(MailSanderVk.class);
+    public static final Logger log = Logger.getLogger(MailSenderVk.class);
 
     private VkApiClient vkApiClient;
     private GroupActor groupActor;
 
     private VkInsertData vkInsertData;
 
-    public MailSanderVk(VkConnect vkConnect) {
+    public MailSenderVk(VkConnect vkConnect) {
         this.vkApiClient = vkConnect.getVkApiClient();
         this.groupActor = vkConnect.getGroupActor();
         this.vkInsertData = new VkInsertData(vkConnect);
@@ -49,30 +49,10 @@ public class MailSanderVk implements MailSandler {
     }
 
     @Override
-    public void send(MailSend mailSend, Integer peerId) {
-        MessagesSendQuery messages = createMessage(mailSend, peerId);
-        if (mailSend.getMessage() != null) {
-            messages.message(mailSend.getMessage());
-        }
-        sendMessage(messages);
-    }
-
-    @Override
     public void send(MailSend mailSend, Integer peerId, Integer userId) {
         MessagesSendQuery messages = createMessage(mailSend, peerId);
         if (mailSend.getMessage() != null) {
             messages.message(vkInsertData.insertWords(mailSend, userId));
-        }
-        sendMessage(messages);
-    }
-
-    public void send(MailSend mailSend, Integer peerId, List<String> insertWords) {
-        MessagesSendQuery messages = createMessage(mailSend, peerId);
-        if (mailSend.getMessage() != null) {
-            InsertWords insert = new InsertWords();
-            insert.setInText(mailSend.getMessage());
-            insert.insert(insertWords);
-            messages.message(insert.getOutText());
         }
         sendMessage(messages);
     }
