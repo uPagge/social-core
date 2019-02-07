@@ -47,7 +47,7 @@ public class MailSubscriber implements EventSubscribe<JsonObject>, EventDistribu
         log.info("Дистрибьютор получил событие - сообщение");
         Gson gson = new Gson();
         Message userMessage = gson.fromJson(object, Message.class);
-        if (userMessage.getPeerId()>2000000000) {
+        if (userMessage.getPeerId() > 2000000000) {
             if (eventDistributionMap.containsKey("chat")) {
                 eventDistributionMap.get("chat").update(userMessage);
             }

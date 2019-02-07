@@ -26,4 +26,5 @@ public class MailChatSubscriber implements EventSubscribe<Message> {
     public void update(Message message) {
         mailService.add(message);
     }
+
 }

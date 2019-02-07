@@ -33,4 +33,5 @@ public class CommentServiceImpl implements CommentService {
     public List<Comment> getLastMailByTime(Integer timeFrom, Integer timeTo) {
         return null;
     }
+
 }

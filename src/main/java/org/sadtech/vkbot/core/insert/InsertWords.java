@@ -10,17 +10,17 @@ public class InsertWords {
     private String outText;
 
     public void insert(List<String> words) {
-        Pattern pattern = Pattern.compile("\\{(\\d+)}"); // Задаем шаблон
-        Matcher m = pattern.matcher(inText);             // Инициализация Matcher
-        StringBuffer result = new StringBuffer();   // Буфер для конечного значения
-        while (m.find()) {                          // Проверка на совпадение
+        Pattern pattern = Pattern.compile("\\{(\\d+)}");
+        Matcher m = pattern.matcher(inText);
+        StringBuffer result = new StringBuffer();
+        while (m.find()) {
             if (Integer.parseInt(m.group(1)) < words.size()) {
-                m.appendReplacement(result, words.get(Integer.parseInt(m.group(1)))); // Подставляем значение из HashMap
+                m.appendReplacement(result, words.get(Integer.parseInt(m.group(1))));
             } else {
                 m.appendReplacement(result, m.group(0));
             }
         }
-        m.appendTail(result);        // Добавить остаток строки
+        m.appendTail(result);
         outText = result.toString();
     }
 

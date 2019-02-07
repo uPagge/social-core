@@ -43,4 +43,5 @@ public class RawEventServiceImpl implements RawEventService {
     public void replacementEventRepository(EventRepository eventRepository) {
         this.eventRepository = eventRepository;
     }
+
 }

@@ -25,4 +25,5 @@ public class CommentSubscriber implements EventSubscribe<JsonObject> {
         WallComment wallComment = gson.fromJson(object, WallComment.class);
         log.info(wallComment);
     }
+
 }

@@ -28,7 +28,7 @@ public class MailSenderVk implements MailSent {
         this.vkInsertData = new VkInsertData(vkConnect);
     }
 
-    private MessagesSendQuery createMessage (MailSend mailSend, Integer peerId) {
+    private MessagesSendQuery createMessage(MailSend mailSend, Integer peerId) {
         MessagesSendQuery messages = vkApiClient.messages().send(groupActor).peerId(peerId);
         if (mailSend.getKeyboard() != null) {
             messages.keyboard(mailSend.getKeyboard());
@@ -76,4 +76,5 @@ public class MailSenderVk implements MailSent {
             e.printStackTrace();
         }
     }
+
 }
