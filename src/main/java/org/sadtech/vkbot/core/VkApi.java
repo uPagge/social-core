@@ -59,7 +59,13 @@ public class VkApi {
         } catch (ApiException | ClientException e) {
             e.printStackTrace();
         }
-        return temp != null ? temp.get(0).getCity().getTitle() : null;
+        if (temp!=null) {
+            if (temp.get(0).getCity()!=null) {
+                log.info("Запрошен город пользователя: " + temp.get(0).getCity().getTitle());
+                return temp.get(0).getCity().getTitle();
+            }
+        }
+        return null;
     }
 
 
