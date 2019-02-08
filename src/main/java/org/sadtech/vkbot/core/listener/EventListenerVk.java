@@ -1,13 +1,12 @@
 package org.sadtech.vkbot.core.listener;
 
 import com.google.gson.JsonObject;
-import com.vk.api.sdk.actions.LongPoll;
-import com.vk.api.sdk.callback.longpoll.queries.GetLongPollEventsQuery;
 import com.vk.api.sdk.callback.longpoll.responses.GetLongPollEventsResponse;
 import com.vk.api.sdk.client.VkApiClient;
 import com.vk.api.sdk.client.actors.GroupActor;
 import com.vk.api.sdk.exceptions.ApiException;
 import com.vk.api.sdk.exceptions.ClientException;
+import com.vk.api.sdk.exceptions.LongPollServerKeyExpiredException;
 import com.vk.api.sdk.objects.groups.responses.GetLongPollServerResponse;
 import org.apache.log4j.Logger;
 import org.sadtech.vkbot.core.VkConnect;
@@ -24,22 +23,16 @@ public class EventListenerVk implements EventListener, Runnable {
 
     private RawEventService rawEventService;
 
-    private GetLongPollEventsQuery longPollEventsQuery;
-    private LongPoll longPoll;
-    private GetLongPollServerResponse server;
-
     public EventListenerVk(VkConnect vkConnect) {
         vk = vkConnect.getVkApiClient();
         actor = vkConnect.getGroupActor();
         rawEventService = new RawEventServiceImpl(new EventRepositoryQueue());
-        longPoll = new LongPoll(vk);
     }
 
     public EventListenerVk(VkConnect vkConnect, RawEventService rawEventService) {
         this.vk = vkConnect.getVkApiClient();
         this.actor = vkConnect.getGroupActor();
         this.rawEventService = rawEventService;
-        longPoll = new LongPoll(vk);
     }
 
     public RawEventService getRawEventService() {
@@ -47,29 +40,29 @@ public class EventListenerVk implements EventListener, Runnable {
     }
 
     public void listen() throws ClientException, ApiException {
-        initServer();
-        log.info("LongPollServer инициализирован");
-        do {
-            GetLongPollEventsResponse eventsResponse;
-            eventsResponse = longPollEventsQuery.execute();
-            if (eventsResponse.getUpdates().toArray().length != 0) {
-                log.info("Полученно событие от ВК");
-                log.info(eventsResponse.getUpdates());
-                for (JsonObject update : eventsResponse.getUpdates()) {
-                    rawEventService.add(update);
+        GetLongPollServerResponse longPollServer = getLongPollServer();
+        int lastTimeStamp = longPollServer.getTs();
+        while (true) {
+            try {
+                GetLongPollEventsResponse eventsResponse = vk.longPoll().getEvents(longPollServer.getServer(), longPollServer.getKey(), lastTimeStamp).waitTime(25).execute();
+                for (JsonObject jsonObject: eventsResponse.getUpdates()) {
+                    log.info("Новое событие от LongPoll\n" + jsonObject);
+                    rawEventService.add(jsonObject);
                 }
+                lastTimeStamp = eventsResponse.getTs();
+            } catch (LongPollServerKeyExpiredException e) {
+                longPollServer = getLongPollServer();
             }
-            longPollEventsQuery = longPoll.getEvents(server.getServer(), server.getKey(), eventsResponse.getTs()).waitTime(20);
-        } while (true);
+        }
+
     }
 
-    private void initServer() throws ClientException, ApiException {
-        server = vk.groups().getLongPollServer(actor).execute();
-        String key = server.getKey();
-        String serverUrl = server.getServer();
-        Integer ts = server.getTs();
-        longPoll = new LongPoll(vk);
-        longPollEventsQuery = longPoll.getEvents(serverUrl, key, ts).waitTime(20);
+    private GetLongPollServerResponse getLongPollServer() throws ClientException, ApiException {
+        log.info("LongPoll сервер инициализирован");
+        if (actor != null) {
+            return vk.groups().getLongPollServer(actor).execute();
+        }
+        return null;
     }
 
     @Override
