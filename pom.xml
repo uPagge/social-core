@@ -6,7 +6,7 @@
 
     <groupId>org.sadtech.vkbot</groupId>
     <artifactId>core</artifactId>
-    <version>0.4.2-RELEASE</version>
+    <version>0.4.3-SNAPSHOT</version>
     <build>
         <plugins>
             <plugin>
