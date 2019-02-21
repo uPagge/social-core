@@ -62,7 +62,6 @@ public class MailServiceImpl implements MailService {
 
     @Override
     public List<Mail> getFirstMailByTime(Integer timeFrom, Integer timeTo) {
-        log.info("Запрошены сообщения от " + timeFrom + " до " + timeTo);
         List<Mail> mails = mailRepository.getMailByTime(timeFrom, timeTo);
         Set<Person> people = new HashSet<>();
         List<Mail> returnMails = new ArrayList<>();

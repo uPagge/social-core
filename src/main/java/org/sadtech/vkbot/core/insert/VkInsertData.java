@@ -2,7 +2,6 @@ package org.sadtech.vkbot.core.insert;
 
 import org.sadtech.vkbot.core.VkApi;
 import org.sadtech.vkbot.core.VkConnect;
-import org.sadtech.vkbot.core.entity.MailSend;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -15,9 +14,9 @@ public class VkInsertData {
         this.vkApi = new VkApi(vkConnect);
     }
 
-    public String insertWords(MailSend mailSend, Integer idUser) {
+    public String insertWords(String message, Integer idUser) {
         Pattern pattern = Pattern.compile("%(\\w+)%");
-        Matcher m = pattern.matcher(mailSend.getMessage());
+        Matcher m = pattern.matcher(message);
         StringBuffer result = new StringBuffer();
         while (m.find()) {
             m.appendReplacement(result, insert(m.group(0), idUser));

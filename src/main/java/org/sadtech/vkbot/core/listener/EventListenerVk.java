@@ -21,6 +21,8 @@ public class EventListenerVk implements EventListener, Runnable {
     private VkApiClient vk;
     private GroupActor actor;
 
+    private static Integer DEFAULT_WAIT_TIME = 10;
+
     private RawEventService rawEventService;
 
     public EventListenerVk(VkConnect vkConnect) {
@@ -44,7 +46,7 @@ public class EventListenerVk implements EventListener, Runnable {
         int lastTimeStamp = longPollServer.getTs();
         while (true) {
             try {
-                GetLongPollEventsResponse eventsResponse = vk.longPoll().getEvents(longPollServer.getServer(), longPollServer.getKey(), lastTimeStamp).waitTime(25).execute();
+                GetLongPollEventsResponse eventsResponse = vk.longPoll().getEvents(longPollServer.getServer(), longPollServer.getKey(), lastTimeStamp).waitTime(DEFAULT_WAIT_TIME).execute();
                 for (JsonObject jsonObject: eventsResponse.getUpdates()) {
                     log.info("Новое событие от LongPoll\n" + jsonObject);
                     rawEventService.add(jsonObject);
@@ -52,6 +54,7 @@ public class EventListenerVk implements EventListener, Runnable {
                 lastTimeStamp = eventsResponse.getTs();
             } catch (LongPollServerKeyExpiredException e) {
                 longPollServer = getLongPollServer();
+                lastTimeStamp = longPollServer.getTs();
             }
         }
 
