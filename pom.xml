@@ -6,7 +6,7 @@
 
     <groupId>org.sadtech.bot</groupId>
     <artifactId>bot-core</artifactId>
-    <version>0.5.1-SNAPHOT</version>
+    <version>0.5.1-RELEASE</version>
     <packaging>jar</packaging>
 
     <build>
