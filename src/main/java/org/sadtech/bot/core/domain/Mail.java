@@ -44,7 +44,7 @@ public class Mail extends Content {
         this.message = message;
     }
 
-    public Mail clone() {
+    public Mail prototype() {
         return new Mail(this);
     }
 
