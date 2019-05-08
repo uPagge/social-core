@@ -9,9 +9,9 @@ import java.util.Queue;
 
 public class RawEventServiceImpl implements RawEventService {
 
-    public static final Logger log = Logger.getLogger(RawEventServiceImpl.class);
+    private static final Logger log = Logger.getLogger(RawEventServiceImpl.class);
 
-    private EventRepository eventRepository;
+    private final EventRepository eventRepository;
 
     public RawEventServiceImpl(EventRepository eventRepository) {
         this.eventRepository = eventRepository;
@@ -37,11 +37,6 @@ public class RawEventServiceImpl implements RawEventService {
     @Override
     public EventRepository getEventRepository() {
         return eventRepository;
-    }
-
-    @Override
-    public void replacementEventRepository(EventRepository eventRepository) {
-        this.eventRepository = eventRepository;
     }
 
 }

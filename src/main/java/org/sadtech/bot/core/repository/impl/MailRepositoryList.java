@@ -11,7 +11,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class MailRepositoryList implements EventRepository<Mail>, MailRepository {
 
-    private List<Mail> messages = new ArrayList<>();
+    private final List<Mail> messages = new ArrayList<>();
 
     @Override
     public void add(Mail mail) {

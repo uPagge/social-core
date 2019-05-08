@@ -15,6 +15,4 @@ public interface RawEventService {
 
     EventRepository getEventRepository();
 
-    void replacementEventRepository(EventRepository eventRepository);
-
 }

@@ -8,7 +8,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class TerminalComandRepositoryQueue implements EventRepository<Mail> {
 
-    private Queue<Mail> mailQueue = new ConcurrentLinkedQueue<>();
+    private final Queue<Mail> mailQueue = new ConcurrentLinkedQueue<>();
 
     @Override
     public void add(Mail dataObject) {
