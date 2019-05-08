@@ -8,7 +8,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class EventRepositoryQueue implements EventRepository<JsonObject> {
 
-    private Queue<JsonObject> jsonObjects = new ConcurrentLinkedQueue<>();
+    private final Queue<JsonObject> jsonObjects = new ConcurrentLinkedQueue<>();
 
     @Override
     public void add(JsonObject jsonObject) {

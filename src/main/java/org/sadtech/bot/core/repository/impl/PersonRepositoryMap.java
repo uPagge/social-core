@@ -11,7 +11,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class PersonRepositoryMap implements EventRepository<Person>, PersonRepository {
 
-    private Map<Integer, Person> personMap = new HashMap<>();
+    private final Map<Integer, Person> personMap = new HashMap<>();
 
     @Override
     public void add(Person person) {
