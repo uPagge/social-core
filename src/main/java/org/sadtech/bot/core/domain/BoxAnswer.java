@@ -10,6 +10,21 @@ public class BoxAnswer {
     private Float aLong;
     private Integer stickerId;
 
+    public BoxAnswer() {
+
+    }
+
+    public BoxAnswer(BoxAnswer target) {
+        if (target != null) {
+            this.message = target.getMessage();
+            this.keyboard = target.getKeyboard();
+            this.lat = target.getLat();
+            this.aLong = target.getaLong();
+            this.stickerId = target.getStickerId();
+        }
+    }
+
+
     public String getMessage() {
         return message;
     }
@@ -50,6 +65,10 @@ public class BoxAnswer {
         this.stickerId = stickerId;
     }
 
+    public BoxAnswer clone() {
+        return new BoxAnswer(this);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -66,4 +85,6 @@ public class BoxAnswer {
     public int hashCode() {
         return Objects.hash(message, keyboard, lat, aLong, stickerId);
     }
+
+
 }

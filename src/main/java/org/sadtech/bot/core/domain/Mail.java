@@ -2,15 +2,21 @@ package org.sadtech.bot.core.domain;
 
 import java.util.Objects;
 
-public class Mail {
+public class Mail extends Content {
 
     private Integer id;
     private Integer date;
-    private Integer peerId;
-    private String body;
+    private String message;
 
     public Mail() {
 
+    }
+
+    public Mail(Mail source) {
+        super(source);
+        this.id = source.getId();
+        this.date = source.getDate();
+        this.message = source.getMessage();
     }
 
     public Integer getId() {
@@ -30,44 +36,31 @@ public class Mail {
     }
 
 
-    public String getBody() {
-        return body;
+    public String getMessage() {
+        return message;
     }
 
-    public void setBody(String body) {
-        this.body = body;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
-    public Integer getPeerId() {
-        return peerId;
-    }
-
-    public void setPeerId(Integer peerId) {
-        this.peerId = peerId;
+    public Mail clone() {
+        return new Mail(this);
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Mail)) return false;
+        if (!super.equals(o)) return false;
         Mail mail = (Mail) o;
         return Objects.equals(id, mail.id) &&
                 Objects.equals(date, mail.date) &&
-                Objects.equals(body, mail.body);
+                Objects.equals(message, mail.message);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, date, body);
-    }
-
-    @Override
-    public String toString() {
-        return "Mail{" +
-                "id=" + id +
-                ", date=" + date +
-                ", peerId=" + peerId +
-                ", body='" + body + '\'' +
-                '}';
+        return Objects.hash(super.hashCode(), id, date, message);
     }
 }

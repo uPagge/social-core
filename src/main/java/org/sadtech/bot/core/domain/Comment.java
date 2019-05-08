@@ -1,10 +1,9 @@
 package org.sadtech.bot.core.domain;
 
 //@TODO: Дописать класс
-public class Comment {
+public class Comment extends Content {
 
     private Integer postId;
-    private Person person;
     private String text;
     private Integer data;
 
@@ -12,11 +11,4 @@ public class Comment {
 
     }
 
-    public Person getPerson() {
-        return person;
-    }
-
-    public void setPerson(Person person) {
-        this.person = person;
-    }
 }
