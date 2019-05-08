@@ -65,7 +65,7 @@ public class BoxAnswer {
         this.stickerId = stickerId;
     }
 
-    public BoxAnswer clone() {
+    public BoxAnswer prototype() {
         return new BoxAnswer(this);
     }
 
