@@ -4,8 +4,8 @@ import org.sadtech.bot.core.domain.BoxAnswer;
 
 public interface Sent {
 
-    void send(Integer idPerson, String message);
+    void send(Integer personId, String message);
 
-    void send(Integer idPerson, BoxAnswer boxAnswer);
+    void send(Integer personId, BoxAnswer boxAnswer);
 
 }

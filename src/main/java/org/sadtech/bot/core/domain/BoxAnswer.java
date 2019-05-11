@@ -14,7 +14,7 @@ public class BoxAnswer {
 
     }
 
-    public BoxAnswer(BoxAnswer target) {
+    private BoxAnswer(BoxAnswer target) {
         if (target != null) {
             this.message = target.getMessage();
             this.keyboard = target.getKeyboard();
@@ -67,6 +67,45 @@ public class BoxAnswer {
 
     public BoxAnswer prototype() {
         return new BoxAnswer(this);
+    }
+
+    public static Builder builder() {
+        return new BoxAnswer().new Builder();
+    }
+
+    public class Builder {
+        private Builder() {
+
+        }
+
+        public Builder message(String message) {
+            BoxAnswer.this.message = message;
+            return this;
+        }
+
+        public Builder keyBoard(String keyBoard) {
+            BoxAnswer.this.keyboard = keyBoard;
+            return this;
+        }
+
+        public Builder lat(Float lat) {
+            BoxAnswer.this.lat = lat;
+            return this;
+        }
+
+        public Builder aLong(Float aLong) {
+            BoxAnswer.this.aLong = aLong;
+            return this;
+        }
+
+        public Builder steckerId(Integer stickerId) {
+            BoxAnswer.this.stickerId = stickerId;
+            return this;
+        }
+
+        public BoxAnswer build() {
+            return BoxAnswer.this;
+        }
     }
 
     @Override
