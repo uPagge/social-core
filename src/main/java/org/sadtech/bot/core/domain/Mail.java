@@ -1,5 +1,8 @@
 package org.sadtech.bot.core.domain;
 
+import org.sadtech.bot.core.domain.attachment.Attachment;
+
+import java.util.List;
 import java.util.Objects;
 
 public class Mail extends Content {
@@ -7,6 +10,7 @@ public class Mail extends Content {
     private Integer id;
     private Integer date;
     private String message;
+    private List<Attachment> attachments;
 
     public Mail() {
 
@@ -62,5 +66,13 @@ public class Mail extends Content {
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), id, date, message);
+    }
+
+    public List<Attachment> getAttachments() {
+        return attachments;
+    }
+
+    public void setAttachments(List<Attachment> attachments) {
+        this.attachments = attachments;
     }
 }
