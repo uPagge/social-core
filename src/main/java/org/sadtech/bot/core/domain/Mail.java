@@ -52,6 +52,14 @@ public class Mail extends Content {
         return new Mail(this);
     }
 
+    public List<Attachment> getAttachments() {
+        return attachments;
+    }
+
+    public void setAttachments(List<Attachment> attachments) {
+        this.attachments = attachments;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -68,11 +76,13 @@ public class Mail extends Content {
         return Objects.hash(super.hashCode(), id, date, message);
     }
 
-    public List<Attachment> getAttachments() {
-        return attachments;
-    }
-
-    public void setAttachments(List<Attachment> attachments) {
-        this.attachments = attachments;
+    @Override
+    public String toString() {
+        return "Mail{" +
+                "id=" + id +
+                ", date=" + date +
+                ", message='" + message + '\'' +
+                ", attachments=" + attachments +
+                '}';
     }
 }
