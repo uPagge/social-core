@@ -2,13 +2,14 @@ package org.sadtech.bot.core.domain;
 
 import org.sadtech.bot.core.domain.attachment.Attachment;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
 public class Mail extends Content {
 
     private Integer id;
-    private Integer date;
+    private LocalDateTime date;
     private String message;
     private List<Attachment> attachments;
 
@@ -31,11 +32,11 @@ public class Mail extends Content {
         this.id = id;
     }
 
-    public Integer getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(Integer date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 
