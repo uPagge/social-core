@@ -34,6 +34,7 @@
         <gson.ver>2.8.5</gson.ver>
         <vksdk.ver>0.5.13-SNAPSHOT</vksdk.ver>
         <slf4j.ver>1.7.26</slf4j.ver>
+        <mail.ver>1.4</mail.ver>
     </properties>
 
     <dependencies>
@@ -46,6 +47,12 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>${slf4j.ver}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+            <version>${mail.ver}</version>
         </dependency>
 
         <dependency>

@@ -32,7 +32,7 @@ public class MailRepositoryList implements EventRepository<Mail>, MailRepository
     public List<Mail> getMailByTime(LocalDateTime timeFrom, LocalDateTime timeTo) {
         ArrayList<Mail> rezultMails = new ArrayList<>();
         for (int i = mails.size() - 1; i >= 0; i--) {
-            if (!(mails.get(i).getDate().isBefore(timeFrom) || mails.get(i).getDate().isAfter(timeTo))) {
+            if (!(mails.get(i).getDate().isBefore(timeFrom) || mails.get(i).getDate().isAfter(timeTo)) && mails.get(i).getDate().equals(timeFrom)) {
                 rezultMails.add(this.mails.get(i));
             } else if (mails.get(i).getDate().isBefore(timeFrom)) {
                 break;

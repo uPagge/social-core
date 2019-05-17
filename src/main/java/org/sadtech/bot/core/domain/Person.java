@@ -9,18 +9,7 @@ public class Person {
     private String lastName;
     private Integer sex;
     private String city;
-
-    public Person() {
-
-    }
-
-    public Person(Integer id, String firstName, String lastName, Integer sex, String city) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.sex = sex;
-        this.city = city;
-    }
+    private String email;
 
     public Integer getId() {
         return id;
@@ -62,21 +51,41 @@ public class Person {
         this.city = city;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Person)) return false;
         Person person = (Person) o;
         return Objects.equals(id, person.id) &&
                 Objects.equals(firstName, person.firstName) &&
                 Objects.equals(lastName, person.lastName) &&
                 Objects.equals(sex, person.sex) &&
-                Objects.equals(city, person.city);
+                Objects.equals(city, person.city) &&
+                Objects.equals(email, person.email);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName, sex, city);
+        return Objects.hash(id, firstName, lastName, sex, city, email);
     }
 
+    @Override
+    public String toString() {
+        return "Person{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", sex=" + sex +
+                ", city='" + city + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
 }
