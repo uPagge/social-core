@@ -1,12 +1,16 @@
 package org.sadtech.bot.core.domain;
 
+import org.sadtech.bot.core.domain.attachment.Attachment;
+
+import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 public class Mail extends Content {
 
     private Integer id;
-    private Integer date;
-    private String message;
+    private LocalDateTime date;
+    private List<Attachment> attachments;
 
     public Mail() {
 
@@ -16,7 +20,6 @@ public class Mail extends Content {
         super(source);
         this.id = source.getId();
         this.date = source.getDate();
-        this.message = source.getMessage();
     }
 
     public Integer getId() {
@@ -27,25 +30,25 @@ public class Mail extends Content {
         this.id = id;
     }
 
-    public Integer getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(Integer date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 
 
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
     public Mail prototype() {
         return new Mail(this);
+    }
+
+    public List<Attachment> getAttachments() {
+        return attachments;
+    }
+
+    public void setAttachments(List<Attachment> attachments) {
+        this.attachments = attachments;
     }
 
     @Override
@@ -56,11 +59,20 @@ public class Mail extends Content {
         Mail mail = (Mail) o;
         return Objects.equals(id, mail.id) &&
                 Objects.equals(date, mail.date) &&
-                Objects.equals(message, mail.message);
+                Objects.equals(attachments, mail.attachments);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), id, date, message);
+        return Objects.hash(super.hashCode(), id, date, attachments);
+    }
+
+    @Override
+    public String toString() {
+        return "Mail{" +
+                "id=" + id +
+                ", date=" + date +
+                ", attachments=" + attachments +
+                '}';
     }
 }

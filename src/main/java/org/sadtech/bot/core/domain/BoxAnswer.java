@@ -1,11 +1,13 @@
 package org.sadtech.bot.core.domain;
 
+import org.sadtech.bot.core.domain.keyboard.KeyBoard;
+
 import java.util.Objects;
 
 public class BoxAnswer {
 
     private String message;
-    private String keyboard;
+    private KeyBoard keyboard;
     private Float lat;
     private Float aLong;
     private Integer stickerId;
@@ -14,7 +16,7 @@ public class BoxAnswer {
 
     }
 
-    public BoxAnswer(BoxAnswer target) {
+    private BoxAnswer(BoxAnswer target) {
         if (target != null) {
             this.message = target.getMessage();
             this.keyboard = target.getKeyboard();
@@ -33,11 +35,11 @@ public class BoxAnswer {
         this.message = message;
     }
 
-    public String getKeyboard() {
+    public KeyBoard getKeyboard() {
         return keyboard;
     }
 
-    public void setKeyboard(String keyboard) {
+    public void setKeyboard(KeyBoard keyboard) {
         this.keyboard = keyboard;
     }
 
@@ -67,6 +69,45 @@ public class BoxAnswer {
 
     public BoxAnswer prototype() {
         return new BoxAnswer(this);
+    }
+
+    public static Builder builder() {
+        return new BoxAnswer().new Builder();
+    }
+
+    public class Builder {
+        private Builder() {
+
+        }
+
+        public Builder message(String message) {
+            BoxAnswer.this.message = message;
+            return this;
+        }
+
+        public Builder keyBoard(KeyBoard keyBoard) {
+            BoxAnswer.this.keyboard = keyBoard;
+            return this;
+        }
+
+        public Builder lat(Float lat) {
+            BoxAnswer.this.lat = lat;
+            return this;
+        }
+
+        public Builder aLong(Float aLong) {
+            BoxAnswer.this.aLong = aLong;
+            return this;
+        }
+
+        public Builder steckerId(Integer stickerId) {
+            BoxAnswer.this.stickerId = stickerId;
+            return this;
+        }
+
+        public BoxAnswer build() {
+            return BoxAnswer.this;
+        }
     }
 
     @Override

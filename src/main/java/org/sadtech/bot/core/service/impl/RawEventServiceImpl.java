@@ -1,15 +1,16 @@
 package org.sadtech.bot.core.service.impl;
 
 import com.google.gson.JsonObject;
-import org.apache.log4j.Logger;
 import org.sadtech.bot.core.repository.EventRepository;
 import org.sadtech.bot.core.service.RawEventService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Queue;
 
 public class RawEventServiceImpl implements RawEventService {
 
-    private static final Logger log = Logger.getLogger(RawEventServiceImpl.class);
+    private static final Logger log = LoggerFactory.getLogger(RawEventServiceImpl.class);
 
     private final EventRepository eventRepository;
 
