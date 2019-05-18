@@ -10,7 +10,6 @@ public class Mail extends Content {
 
     private Integer id;
     private LocalDateTime date;
-    private String message;
     private List<Attachment> attachments;
 
     public Mail() {
@@ -21,7 +20,6 @@ public class Mail extends Content {
         super(source);
         this.id = source.getId();
         this.date = source.getDate();
-        this.message = source.getMessage();
     }
 
     public Integer getId() {
@@ -40,14 +38,6 @@ public class Mail extends Content {
         this.date = date;
     }
 
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
 
     public Mail prototype() {
         return new Mail(this);
@@ -69,12 +59,12 @@ public class Mail extends Content {
         Mail mail = (Mail) o;
         return Objects.equals(id, mail.id) &&
                 Objects.equals(date, mail.date) &&
-                Objects.equals(message, mail.message);
+                Objects.equals(attachments, mail.attachments);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), id, date, message);
+        return Objects.hash(super.hashCode(), id, date, attachments);
     }
 
     @Override
@@ -82,7 +72,6 @@ public class Mail extends Content {
         return "Mail{" +
                 "id=" + id +
                 ", date=" + date +
-                ", message='" + message + '\'' +
                 ", attachments=" + attachments +
                 '}';
     }

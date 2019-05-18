@@ -5,6 +5,7 @@ import java.util.Objects;
 public abstract class Content {
 
     private Integer personId;
+    private String message;
 
     public Content() {
 
@@ -12,6 +13,7 @@ public abstract class Content {
 
     public Content(Content source) {
         this.personId = source.getPersonId();
+        this.message = source.getMessage();
     }
 
     public Integer getPersonId() {
@@ -22,16 +24,25 @@ public abstract class Content {
         this.personId = personId;
     }
 
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Content)) return false;
         Content content = (Content) o;
-        return Objects.equals(personId, content.personId);
+        return Objects.equals(personId, content.personId) &&
+                Objects.equals(message, content.message);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(personId);
+        return Objects.hash(personId, message);
     }
 }
