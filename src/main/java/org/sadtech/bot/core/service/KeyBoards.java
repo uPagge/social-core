@@ -16,7 +16,7 @@ public class KeyBoards {
     public static KeyBoard keyBoardYesNo() {
         KeyBoardButton yesButton = KeyBoardButton.builder().color(ButtonColor.POSITIVE).label("Да").payload("{\"button\": \"yes\"}").build();
         KeyBoardButton noButton = KeyBoardButton.builder().color(ButtonColor.NEGATIVE).label("Нет").payload("{\"button\": \"no\"}").build();
-        KeyBoardLine keyBoardLine = KeyBoardLine.builder().setButtonKeyBoard(yesButton).setButtonKeyBoard(noButton).build();
+        KeyBoardLine keyBoardLine = KeyBoardLine.builder().buttonKeyBoard(yesButton).buttonKeyBoard(noButton).build();
         return KeyBoard.builder().lineKeyBoard(keyBoardLine).oneTime(true).build();
     }
 
@@ -24,7 +24,7 @@ public class KeyBoards {
         KeyBoard.Builder keyBoard = KeyBoard.builder().oneTime(true);
         for (String labelButton : labelButtons) {
             KeyBoardButton keyBoardButton = KeyBoardButton.builder().label(labelButton).payload("{\"button\": \"" + labelButton + "\"}").build();
-            keyBoard.lineKeyBoard(KeyBoardLine.builder().setButtonKeyBoard(keyBoardButton).build());
+            keyBoard.lineKeyBoard(KeyBoardLine.builder().buttonKeyBoard(keyBoardButton).build());
         }
         return keyBoard.build();
     }
@@ -32,7 +32,7 @@ public class KeyBoards {
     public static KeyBoard verticalMenuButton(List<KeyBoardButton> keyBoardButtons) {
         KeyBoard.Builder keyBoard = KeyBoard.builder().oneTime(true);
         for (KeyBoardButton keyBoardButton : keyBoardButtons) {
-            keyBoard.lineKeyBoard(KeyBoardLine.builder().setButtonKeyBoard(keyBoardButton).build());
+            keyBoard.lineKeyBoard(KeyBoardLine.builder().buttonKeyBoard(keyBoardButton).build());
         }
         return keyBoard.build();
     }

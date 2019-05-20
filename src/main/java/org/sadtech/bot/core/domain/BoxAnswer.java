@@ -12,7 +12,7 @@ public class BoxAnswer {
     private Float aLong;
     private Integer stickerId;
 
-    public BoxAnswer() {
+    private BoxAnswer() {
 
     }
 

@@ -29,7 +29,7 @@ public class KeyBoardLine {
 
         }
 
-        public Builder setButtonKeyBoard(KeyBoardButton keyBoardButton) {
+        public Builder buttonKeyBoard(KeyBoardButton keyBoardButton) {
             KeyBoardLine.this.keyBoardButtons.add(keyBoardButton);
             return this;
         }
