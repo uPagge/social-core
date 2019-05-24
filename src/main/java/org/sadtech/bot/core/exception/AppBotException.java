@@ -4,23 +4,18 @@ import java.time.LocalDateTime;
 
 public class AppBotException extends RuntimeException {
 
-    private final String type = "ERROR";
+    private static final String TYPE = "ERROR";
     private final LocalDateTime timeError = LocalDateTime.now();
-    protected Integer code;
-    protected String description;
+    protected final Integer code;
+    protected final String description;
 
-    public AppBotException(String message, Integer code) {
-        super(message);
+    public AppBotException(Integer code, String message) {
         this.description = message;
         this.code = code;
     }
 
-    public AppBotException(Integer code) {
-        this.code = code;
-    }
-
     public String getType() {
-        return type;
+        return TYPE;
     }
 
     public LocalDateTime getTimeError() {

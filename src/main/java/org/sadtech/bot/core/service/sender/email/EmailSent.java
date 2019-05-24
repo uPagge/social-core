@@ -23,6 +23,7 @@ public class EmailSent implements Sent {
     @Override
     public void send(Integer personId, String htmlText) {
         Session session = Session.getDefaultInstance(emailConfig.getProps(), new Authenticator() {
+            @Override
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(emailConfig.getUsername(), emailConfig.getPassword());
             }
@@ -42,6 +43,6 @@ public class EmailSent implements Sent {
 
     @Override
     public void send(Integer personId, BoxAnswer boxAnswer) {
-
+        throw new MailSendException();
     }
 }

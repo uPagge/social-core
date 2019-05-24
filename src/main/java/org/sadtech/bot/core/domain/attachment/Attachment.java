@@ -7,4 +7,5 @@ public abstract class Attachment {
     public AttachmentType getType() {
         return type;
     }
+
 }

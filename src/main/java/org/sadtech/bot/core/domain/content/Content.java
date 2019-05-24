@@ -1,10 +1,8 @@
-package org.sadtech.bot.core.domain;
+package org.sadtech.bot.core.domain.content;
 
 import java.util.Objects;
 
 public abstract class Content {
-
-    public static final EmptyContent EMPTY_CONTENT = new EmptyContent();
 
     private Integer personId;
     private String message;

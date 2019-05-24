@@ -6,7 +6,7 @@ import org.sadtech.bot.core.repository.AccountRepository;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AccountRepositoryImpl implements AccountRepository {
+public class AccountRepositoryMap implements AccountRepository {
 
     private final Map<Integer, Account> saveMap = new HashMap<>();
     private Integer id = 0;

@@ -30,7 +30,7 @@ public class AccountServiceImpl implements AccountService {
         } else {
             account.setAccountStatus(AccountStatus.EXCEPTION);
             accountRepository.edit(accountId, account);
-            throw new PaymentException("Неверная сумма", 2);
+            throw new PaymentException(2, "Неверная сумма");
         }
         return true;
     }

@@ -1,5 +1,6 @@
 package org.sadtech.bot.core.domain;
 
+import org.sadtech.bot.core.domain.content.GeoCoordinate;
 import org.sadtech.bot.core.domain.keyboard.KeyBoard;
 
 import java.util.Objects;
@@ -8,8 +9,7 @@ public class BoxAnswer {
 
     private String message;
     private KeyBoard keyboard;
-    private Float lat;
-    private Float aLong;
+    private GeoCoordinate coordinates;
     private Integer stickerId;
 
     private BoxAnswer() {
@@ -20,8 +20,7 @@ public class BoxAnswer {
         if (target != null) {
             this.message = target.getMessage();
             this.keyboard = target.getKeyboard();
-            this.lat = target.getLat();
-            this.aLong = target.getaLong();
+            this.coordinates = target.getCoordinates();
             this.stickerId = target.getStickerId();
         }
     }
@@ -43,20 +42,8 @@ public class BoxAnswer {
         this.keyboard = keyboard;
     }
 
-    public Float getLat() {
-        return lat;
-    }
-
-    public void setLat(Float lat) {
-        this.lat = lat;
-    }
-
-    public Float getaLong() {
-        return aLong;
-    }
-
-    public void setaLong(Float aLong) {
-        this.aLong = aLong;
+    public GeoCoordinate getCoordinates() {
+        return coordinates;
     }
 
     public Integer getStickerId() {
@@ -90,13 +77,8 @@ public class BoxAnswer {
             return this;
         }
 
-        public Builder lat(Float lat) {
-            BoxAnswer.this.lat = lat;
-            return this;
-        }
-
-        public Builder aLong(Float aLong) {
-            BoxAnswer.this.aLong = aLong;
+        public Builder coordinate(Float lat, Float aLong) {
+            BoxAnswer.this.coordinates = new GeoCoordinate(lat, aLong);
             return this;
         }
 
@@ -113,19 +95,26 @@ public class BoxAnswer {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof BoxAnswer)) return false;
         BoxAnswer boxAnswer = (BoxAnswer) o;
         return Objects.equals(message, boxAnswer.message) &&
                 Objects.equals(keyboard, boxAnswer.keyboard) &&
-                Objects.equals(lat, boxAnswer.lat) &&
-                Objects.equals(aLong, boxAnswer.aLong) &&
+                Objects.equals(coordinates, boxAnswer.coordinates) &&
                 Objects.equals(stickerId, boxAnswer.stickerId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(message, keyboard, lat, aLong, stickerId);
+        return Objects.hash(message, keyboard, coordinates, stickerId);
     }
 
-
+    @Override
+    public String toString() {
+        return "BoxAnswer{" +
+                "message='" + message + '\'' +
+                ", keyboard=" + keyboard +
+                ", coordinates=" + coordinates +
+                ", stickerId=" + stickerId +
+                '}';
+    }
 }

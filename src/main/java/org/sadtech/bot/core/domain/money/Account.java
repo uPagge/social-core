@@ -67,12 +67,25 @@ public class Account {
         return Objects.equals(id, account.id) &&
                 Objects.equals(totalSum, account.totalSum) &&
                 Objects.equals(belongsPersonId, account.belongsPersonId) &&
+                Objects.equals(extinguishedPersonId, account.extinguishedPersonId) &&
                 Objects.equals(description, account.description) &&
                 accountStatus == account.accountStatus;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, totalSum, belongsPersonId, description, accountStatus);
+        return Objects.hash(id, totalSum, belongsPersonId, extinguishedPersonId, description, accountStatus);
+    }
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "id=" + id +
+                ", totalSum=" + totalSum +
+                ", belongsPersonId=" + belongsPersonId +
+                ", extinguishedPersonId=" + extinguishedPersonId +
+                ", description='" + description + '\'' +
+                ", accountStatus=" + accountStatus +
+                '}';
     }
 }

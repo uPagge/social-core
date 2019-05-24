@@ -1,4 +1,4 @@
-package org.sadtech.bot.core.domain;
+package org.sadtech.bot.core.domain.content;
 
 import org.sadtech.bot.core.domain.attachment.Attachment;
 

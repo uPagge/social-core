@@ -1,8 +1,7 @@
 package org.sadtech.bot.core.service.impl;
 
-import org.sadtech.bot.core.domain.Mail;
+import org.sadtech.bot.core.domain.content.Mail;
 import org.sadtech.bot.core.repository.MailRepository;
-import org.sadtech.bot.core.repository.impl.MailRepositoryList;
 import org.sadtech.bot.core.service.MailService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,10 +18,6 @@ public class MailServiceImpl implements MailService {
 
     private final MailRepository mailRepository;
 
-    public MailServiceImpl() {
-        this.mailRepository = new MailRepositoryList();
-    }
-
     public MailServiceImpl(MailRepository mailRepository) {
         this.mailRepository = mailRepository;
     }
@@ -30,13 +25,12 @@ public class MailServiceImpl implements MailService {
     @Override
     public void add(Mail mail) {
         mailRepository.add(mail);
-        log.info("Сообщение добавлено в репозиторий");
-        log.info(mail.toString());
+        log.info("Сообщение добавлено в репозиторий | {}", mail);
     }
 
     @Override
     public List<Mail> getFirstEventByTime(LocalDateTime timeFrom, LocalDateTime timeTo) {
-        log.info("Запрошены сообщения " + timeFrom + " - " + timeTo);
+        log.info("Запрошены сообщения {} - {} ", timeFrom, timeTo);
         List<Mail> mails = mailRepository.getMailByTime(timeFrom, timeTo);
         Set<Integer> people = new HashSet<>();
         List<Mail> returnMails = new ArrayList<>();
@@ -65,7 +59,7 @@ public class MailServiceImpl implements MailService {
 
     @Override
     public List<Mail> getEvent(LocalDateTime timeFrom, LocalDateTime timeTo) {
-        log.info("Запрос на получение сообщений в интервале от " + timeFrom + " до " + timeTo);
+        log.info("Запрошены сообщения {} - {} ", timeFrom, timeTo);
         return mailRepository.getMailByTime(timeFrom, timeTo);
     }
 
