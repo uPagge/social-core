@@ -1,4 +1,4 @@
-package org.sadtech.bot.core.service;
+package org.sadtech.bot.core.utils;
 
 import org.sadtech.bot.core.domain.keyboard.ButtonColor;
 import org.sadtech.bot.core.domain.keyboard.KeyBoard;

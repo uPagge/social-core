@@ -1,8 +1,8 @@
-package org.sadtech.bot.core.sender.email;
+package org.sadtech.bot.core.service.sender.email;
 
 import org.sadtech.bot.core.domain.BoxAnswer;
 import org.sadtech.bot.core.exception.MailSendException;
-import org.sadtech.bot.core.sender.Sent;
+import org.sadtech.bot.core.service.sender.Sent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

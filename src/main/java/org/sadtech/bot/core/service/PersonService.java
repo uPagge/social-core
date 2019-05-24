@@ -8,7 +8,7 @@ public interface PersonService {
 
     Person get(Integer id);
 
-    boolean checkPerson(Integer idPerson);
+    boolean checkPerson(Integer personId);
 
     Person createPerson(Integer userId);
 

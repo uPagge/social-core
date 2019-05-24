@@ -1,4 +1,4 @@
-package org.sadtech.bot.core.sender;
+package org.sadtech.bot.core.service.sender;
 
 import org.sadtech.bot.core.domain.BoxAnswer;
 
