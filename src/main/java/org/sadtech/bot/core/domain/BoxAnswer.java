@@ -1,6 +1,6 @@
 package org.sadtech.bot.core.domain;
 
-import org.sadtech.bot.core.domain.content.GeoCoordinate;
+import org.sadtech.bot.core.domain.content.attachment.GeoCoordinate;
 import org.sadtech.bot.core.domain.keyboard.KeyBoard;
 
 import java.util.Objects;

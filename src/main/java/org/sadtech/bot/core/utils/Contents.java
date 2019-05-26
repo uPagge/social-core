@@ -1,6 +1,6 @@
 package org.sadtech.bot.core.utils;
 
-import org.sadtech.bot.core.domain.EmptyContent;
+import org.sadtech.bot.core.domain.content.EmptyContent;
 
 public class Contents {
 

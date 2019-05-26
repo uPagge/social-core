@@ -1,6 +1,5 @@
-package org.sadtech.bot.core.domain;
+package org.sadtech.bot.core.domain.content;
 
-import org.sadtech.bot.core.domain.content.Content;
 import org.sadtech.bot.core.exception.AppBotException;
 
 public class EmptyContent extends Content {

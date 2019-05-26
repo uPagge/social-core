@@ -1,4 +1,4 @@
-package org.sadtech.bot.core.domain.attachment;
+package org.sadtech.bot.core.domain.content.attachment;
 
 public abstract class Attachment {
 

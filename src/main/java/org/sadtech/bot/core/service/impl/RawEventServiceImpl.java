@@ -35,9 +35,4 @@ public class RawEventServiceImpl implements RawEventService {
         return eventRepository.getEventQueue();
     }
 
-    @Override
-    public EventRepository getEventRepository() {
-        return eventRepository;
-    }
-
 }

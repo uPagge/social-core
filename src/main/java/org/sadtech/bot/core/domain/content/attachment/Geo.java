@@ -1,6 +1,4 @@
-package org.sadtech.bot.core.domain.attachment;
-
-import org.sadtech.bot.core.domain.content.GeoCoordinate;
+package org.sadtech.bot.core.domain.content.attachment;
 
 import java.util.Objects;
 

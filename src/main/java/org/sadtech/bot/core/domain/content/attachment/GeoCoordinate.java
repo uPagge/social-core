@@ -1,4 +1,4 @@
-package org.sadtech.bot.core.domain.content;
+package org.sadtech.bot.core.domain.content.attachment;
 
 public class GeoCoordinate {
 
