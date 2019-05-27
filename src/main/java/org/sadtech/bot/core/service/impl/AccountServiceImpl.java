@@ -23,16 +23,24 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public Boolean pay(Integer accountId, Integer extinguishedPersonId, Double sum) {
         Account account = accountRepository.findById(accountId);
-        if (account.getTotalSum().equals(sum)) {
-            account.setAccountStatus(AccountStatus.CLOSED);
-            account.setExtinguishedPersonId(extinguishedPersonId);
-            accountRepository.edit(accountId, account);
+        if (validStatus(account.getAccountStatus())) {
+            if (account.getTotalSum().equals(sum)) {
+                account.setAccountStatus(AccountStatus.CLOSED);
+                account.setExtinguishedPersonId(extinguishedPersonId);
+                accountRepository.edit(accountId, account);
+            } else {
+                account.setAccountStatus(AccountStatus.EXCEPTION);
+                accountRepository.edit(accountId, account);
+                throw new PaymentException(2, "Неверная сумма");
+            }
         } else {
-            account.setAccountStatus(AccountStatus.EXCEPTION);
-            accountRepository.edit(accountId, account);
-            throw new PaymentException(2, "Неверная сумма");
+            throw new PaymentException(3, "Счет уже оплачен");
         }
         return true;
+    }
+
+    private boolean validStatus(AccountStatus accountStatus) {
+        return AccountStatus.EXCEPTION.equals(accountStatus) || AccountStatus.EXPOSED.equals(accountStatus);
     }
 
     @Override
