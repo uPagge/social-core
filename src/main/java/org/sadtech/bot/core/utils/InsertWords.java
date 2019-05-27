@@ -1,4 +1,4 @@
-package org.sadtech.bot.core.insert;
+package org.sadtech.bot.core.utils;
 
 import java.util.List;
 import java.util.regex.Matcher;

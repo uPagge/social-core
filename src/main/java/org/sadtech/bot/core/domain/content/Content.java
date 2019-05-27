@@ -1,4 +1,4 @@
-package org.sadtech.bot.core.domain;
+package org.sadtech.bot.core.domain.content;
 
 import java.util.Objects;
 

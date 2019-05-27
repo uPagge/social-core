@@ -1,6 +1,6 @@
 package org.sadtech.bot.core.repository;
 
-import org.sadtech.bot.core.domain.Mail;
+import org.sadtech.bot.core.domain.content.Mail;
 
 import java.time.LocalDateTime;
 import java.util.List;

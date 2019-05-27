@@ -1,4 +1,4 @@
-package org.sadtech.bot.core.sender.email;
+package org.sadtech.bot.core.service.sender.email;
 
 import java.util.Properties;
 

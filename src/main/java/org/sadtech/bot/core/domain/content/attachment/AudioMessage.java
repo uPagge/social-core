@@ -1,4 +1,4 @@
-package org.sadtech.bot.core.domain.attachment;
+package org.sadtech.bot.core.domain.content.attachment;
 
 import java.net.URL;
 import java.util.Objects;

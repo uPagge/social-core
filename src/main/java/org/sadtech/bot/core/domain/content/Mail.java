@@ -1,6 +1,6 @@
-package org.sadtech.bot.core.domain;
+package org.sadtech.bot.core.domain.content;
 
-import org.sadtech.bot.core.domain.attachment.Attachment;
+import org.sadtech.bot.core.domain.content.attachment.Attachment;
 
 import java.time.LocalDateTime;
 import java.util.List;

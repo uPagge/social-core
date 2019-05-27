@@ -1,6 +1,6 @@
 package org.sadtech.bot.core.repository.impl;
 
-import org.sadtech.bot.core.domain.Mail;
+import org.sadtech.bot.core.domain.content.Mail;
 import org.sadtech.bot.core.repository.EventRepository;
 import org.sadtech.bot.core.repository.MailRepository;
 

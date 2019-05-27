@@ -1,7 +1,5 @@
 package org.sadtech.bot.core.domain.keyboard;
 
-import com.google.gson.JsonObject;
-
 import java.util.Objects;
 
 public class KeyBoardButton {
@@ -10,7 +8,7 @@ public class KeyBoardButton {
     private String label;
     private ButtonColor color = ButtonColor.DEFAULT;
 
-    public KeyBoardButton() {
+    private KeyBoardButton() {
 
     }
 
@@ -24,13 +22,6 @@ public class KeyBoardButton {
 
     public ButtonColor getColor() {
         return color;
-    }
-
-    private JsonObject generateAction() {
-        JsonObject action = new JsonObject();
-        action.addProperty("payload", payload);
-        action.addProperty("label", label);
-        return action;
     }
 
     public static Builder builder() {
@@ -68,14 +59,23 @@ public class KeyBoardButton {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof KeyBoardButton)) return false;
-        KeyBoardButton that = (KeyBoardButton) o;
-        return Objects.equals(payload, that.payload) &&
-                Objects.equals(label, that.label) &&
-                color == that.color;
+        KeyBoardButton button = (KeyBoardButton) o;
+        return Objects.equals(payload, button.payload) &&
+                Objects.equals(label, button.label) &&
+                color == button.color;
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(payload, label, color);
+    }
+
+    @Override
+    public String toString() {
+        return "KeyBoardButton{" +
+                "payload='" + payload + '\'' +
+                ", label='" + label + '\'' +
+                ", color=" + color +
+                '}';
     }
 }

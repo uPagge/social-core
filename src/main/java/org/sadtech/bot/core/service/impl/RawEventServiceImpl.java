@@ -12,9 +12,9 @@ public class RawEventServiceImpl implements RawEventService {
 
     private static final Logger log = LoggerFactory.getLogger(RawEventServiceImpl.class);
 
-    private final EventRepository eventRepository;
+    private final EventRepository<JsonObject> eventRepository;
 
-    public RawEventServiceImpl(EventRepository eventRepository) {
+    public RawEventServiceImpl(EventRepository<JsonObject> eventRepository) {
         this.eventRepository = eventRepository;
     }
 
@@ -33,11 +33,6 @@ public class RawEventServiceImpl implements RawEventService {
     @Override
     public Queue<JsonObject> getJsonObjects() {
         return eventRepository.getEventQueue();
-    }
-
-    @Override
-    public EventRepository getEventRepository() {
-        return eventRepository;
     }
 
 }

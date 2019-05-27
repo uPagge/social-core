@@ -2,17 +2,14 @@ package org.sadtech.bot.core.domain.keyboard;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class KeyBoardLine {
 
     private List<KeyBoardButton> keyBoardButtons = new ArrayList<>();
 
-    public KeyBoardLine() {
+    private KeyBoardLine() {
 
-    }
-
-    public KeyBoardLine(List<KeyBoardButton> keyBoardButtons) {
-        this.keyBoardButtons = keyBoardButtons;
     }
 
     public List<KeyBoardButton> getKeyBoardButtons() {
@@ -29,7 +26,7 @@ public class KeyBoardLine {
 
         }
 
-        public Builder setButtonKeyBoard(KeyBoardButton keyBoardButton) {
+        public Builder buttonKeyBoard(KeyBoardButton keyBoardButton) {
             KeyBoardLine.this.keyBoardButtons.add(keyBoardButton);
             return this;
         }
@@ -37,5 +34,25 @@ public class KeyBoardLine {
         public KeyBoardLine build() {
             return KeyBoardLine.this;
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof KeyBoardLine)) return false;
+        KeyBoardLine that = (KeyBoardLine) o;
+        return Objects.equals(keyBoardButtons, that.keyBoardButtons);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(keyBoardButtons);
+    }
+
+    @Override
+    public String toString() {
+        return "KeyBoardLine{" +
+                "keyBoardButtons=" + keyBoardButtons +
+                '}';
     }
 }

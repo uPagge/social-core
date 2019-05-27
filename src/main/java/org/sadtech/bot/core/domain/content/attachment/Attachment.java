@@ -1,10 +1,11 @@
-package org.sadtech.bot.core.domain.attachment;
+package org.sadtech.bot.core.domain.content.attachment;
 
 public abstract class Attachment {
 
-    AttachmentType type;
+    protected AttachmentType type;
 
     public AttachmentType getType() {
         return type;
     }
+
 }
