@@ -1,40 +1,30 @@
 package org.sadtech.bot.core.repository.impl;
 
 import org.sadtech.bot.core.domain.content.Mail;
-import org.sadtech.bot.core.repository.EventRepository;
-import org.sadtech.bot.core.repository.MailRepository;
+import org.sadtech.bot.core.repository.ContentRepository;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Queue;
-import java.util.concurrent.ConcurrentLinkedQueue;
 
-public class MailRepositoryList implements EventRepository<Mail>, MailRepository {
+public class MailRepositoryList implements ContentRepository<Mail> {
 
     private final List<Mail> mails = new ArrayList<>();
 
     @Override
-    public void add(Mail mail) {
+    public Integer add(Mail mail) {
         mails.add(mail);
+        return mails.size() - 1;
     }
+
 
     @Override
-    public void cleanAll() {
-        mails.clear();
-    }
-
-    @Override
-    public Queue<Mail> getEventQueue() {
-        return new ConcurrentLinkedQueue<>(mails);
-    }
-
-    public List<Mail> getMailByTime(LocalDateTime timeFrom, LocalDateTime timeTo) {
+    public List<Mail> findByTime(LocalDateTime timeFrom, LocalDateTime timeTo) {
         ArrayList<Mail> rezultMails = new ArrayList<>();
         for (int i = mails.size() - 1; i >= 0; i--) {
-            if (!(mails.get(i).getDate().isBefore(timeFrom) || mails.get(i).getDate().isAfter(timeTo)) && mails.get(i).getDate().equals(timeFrom)) {
+            if (!(mails.get(i).getCreateDate().isBefore(timeFrom) || mails.get(i).getCreateDate().isAfter(timeTo)) && mails.get(i).getCreateDate().equals(timeFrom)) {
                 rezultMails.add(this.mails.get(i));
-            } else if (mails.get(i).getDate().isBefore(timeFrom)) {
+            } else if (mails.get(i).getCreateDate().isBefore(timeFrom)) {
                 break;
             }
         }
