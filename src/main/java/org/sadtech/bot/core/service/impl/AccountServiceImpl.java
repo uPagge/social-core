@@ -21,7 +21,7 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public Boolean pay(Integer accountId, Integer extinguishedPersonId, Double sum) {
+    public Boolean pay(Integer accountId, Integer extinguishedPersonId, Integer sum) {
         Account account = accountRepository.findById(accountId);
         if (validStatus(account.getAccountStatus())) {
             if (account.getTotalSum().equals(sum)) {

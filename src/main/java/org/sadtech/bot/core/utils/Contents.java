@@ -1,6 +1,6 @@
 package org.sadtech.bot.core.utils;
 
-import org.sadtech.bot.core.domain.content.EmptyContent;
+import org.sadtech.bot.core.domain.content.EmptyMessage;
 
 public class Contents {
 
@@ -8,7 +8,7 @@ public class Contents {
         throw new IllegalStateException("Utility class");
     }
 
-    public static final EmptyContent EMPTY_CONTENT = new EmptyContent();
+    public static final EmptyMessage EMPTY_CONTENT = new EmptyMessage();
 
 
 }

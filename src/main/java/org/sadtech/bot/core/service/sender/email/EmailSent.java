@@ -21,7 +21,7 @@ public class EmailSent implements Sent {
     }
 
     @Override
-    public void send(Integer personId, String htmlText) {
+    public void send(Integer personId, BoxAnswer boxAnswer) {
         Session session = Session.getDefaultInstance(emailConfig.getProps(), new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
@@ -33,7 +33,7 @@ public class EmailSent implements Sent {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(emailConfig.getUsername()));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(emailConfig.getUsername()));
-            message.setContent(htmlText, "text/html; charset=utf-8");
+            message.setContent(boxAnswer.getMessage(), "text/html; charset=utf-8");
             Transport.send(message);
         } catch (MessagingException e) {
             log.error(e.getMessage());
@@ -42,7 +42,7 @@ public class EmailSent implements Sent {
     }
 
     @Override
-    public void send(Integer personId, BoxAnswer boxAnswer) {
+    public void send(Integer contentId, Integer personId, BoxAnswer boxAnswer) {
         throw new MailSendException();
     }
 }
