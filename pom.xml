@@ -6,7 +6,7 @@
 
     <groupId>org.sadtech.bot</groupId>
     <artifactId>bot-core</artifactId>
-    <version>0.6.2-SNAPSHOT</version>
+    <version>0.6.2-RELEASE</version>
     <packaging>jar</packaging>
 
     <build>
@@ -57,6 +57,7 @@
     <developers>
         <developer>
             <id>uPagge</id>
+            <organization>SADTECH</organization>
             <name>Struchkov Mark</name>
             <email>upagge@mail.ru</email>
         </developer>
