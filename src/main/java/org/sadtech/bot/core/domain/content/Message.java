@@ -3,7 +3,7 @@ package org.sadtech.bot.core.domain.content;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-public abstract class Content {
+public abstract class Message {
 
     private Integer id;
     protected ContentType type;
@@ -11,11 +11,11 @@ public abstract class Content {
     private Integer personId;
     private String message;
 
-    public Content() {
+    public Message() {
 
     }
 
-    public Content(Content source) {
+    public Message(Message source) {
         this.personId = source.getPersonId();
         this.message = source.getMessage();
         this.createDate = source.getCreateDate();
@@ -66,13 +66,13 @@ public abstract class Content {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Content)) return false;
-        Content content = (Content) o;
-        return Objects.equals(id, content.id) &&
-                type == content.type &&
-                Objects.equals(createDate, content.createDate) &&
-                Objects.equals(personId, content.personId) &&
-                Objects.equals(message, content.message);
+        if (!(o instanceof Message)) return false;
+        Message message = (Message) o;
+        return Objects.equals(id, message.id) &&
+                type == message.type &&
+                Objects.equals(createDate, message.createDate) &&
+                Objects.equals(personId, message.personId) &&
+                Objects.equals(this.message, message.message);
     }
 
     @Override
@@ -82,7 +82,7 @@ public abstract class Content {
 
     @Override
     public String toString() {
-        return "Content{" +
+        return "Message{" +
                 "id=" + id +
                 ", type=" + type +
                 ", createDate=" + createDate +

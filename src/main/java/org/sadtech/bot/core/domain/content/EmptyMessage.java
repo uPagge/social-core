@@ -2,7 +2,11 @@ package org.sadtech.bot.core.domain.content;
 
 import org.sadtech.bot.core.exception.AppBotException;
 
-public class EmptyContent extends Content {
+public class EmptyMessage extends Message {
+
+    public EmptyMessage() {
+        type = ContentType.EMPTY;
+    }
 
     @Override
     public String getMessage() {
@@ -11,6 +15,6 @@ public class EmptyContent extends Content {
 
     @Override
     public void setMessage(String message) {
-        throw new AppBotException(0, "EmptyContent no setMessage");
+        throw new AppBotException(0, "EmptyMessage no setMessage");
     }
 }

@@ -43,6 +43,6 @@ public class AccountRepositoryMap implements AccountRepository {
     }
 
     private boolean check(Integer id) {
-        return saveMap.containsKey(id);
+        return !saveMap.containsKey(id);
     }
 }

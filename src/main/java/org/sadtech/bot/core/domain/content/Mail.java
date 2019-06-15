@@ -5,10 +5,9 @@ import org.sadtech.bot.core.domain.content.attachment.Attachment;
 import java.util.List;
 import java.util.Objects;
 
-public class Mail extends Content {
+public class Mail extends Message {
 
     private List<Attachment> attachments;
-
 
     public Mail() {
         type = ContentType.MAIL;
@@ -32,6 +31,7 @@ public class Mail extends Content {
         this.attachments = attachments;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -50,6 +50,7 @@ public class Mail extends Content {
     public String toString() {
         return "Mail{" +
                 "attachments=" + attachments +
-                "} " + super.toString();
+                ", type=" + type +
+                '}';
     }
 }

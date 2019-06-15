@@ -38,20 +38,12 @@ public class BoxAnswer {
         return keyboard;
     }
 
-    public void setKeyboard(KeyBoard keyboard) {
-        this.keyboard = keyboard;
-    }
-
     public GeoCoordinate getCoordinates() {
         return coordinates;
     }
 
     public Integer getStickerId() {
         return stickerId;
-    }
-
-    public void setStickerId(Integer stickerId) {
-        this.stickerId = stickerId;
     }
 
     public BoxAnswer prototype() {

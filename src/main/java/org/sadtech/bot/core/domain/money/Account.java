@@ -5,7 +5,7 @@ import java.util.Objects;
 public class Account {
 
     private Integer id;
-    private Double totalSum;
+    private Integer totalSum;
     private Integer belongsPersonId;
     private Integer extinguishedPersonId;
     private String description;
@@ -19,11 +19,11 @@ public class Account {
         this.id = id;
     }
 
-    public Double getTotalSum() {
+    public Integer getTotalSum() {
         return totalSum;
     }
 
-    public void setTotalSum(Double totalSum) {
+    public void setTotalSum(Integer totalSum) {
         this.totalSum = totalSum;
     }
 

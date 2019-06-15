@@ -6,7 +6,7 @@ public interface AccountService {
 
     Integer add(Account account);
 
-    Boolean pay(Integer accountId, Integer extinguishedPersonId, Double sum);
+    Boolean pay(Integer accountId, Integer extinguishedPersonId, Integer sum);
 
     Boolean paymentVerification(Integer accountId);
 
