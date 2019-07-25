@@ -26,4 +26,8 @@ public class KeyBoardButtonText extends KeyBoardButton {
         this.label = label;
         this.color = (color != null) ? color : ButtonColor.DEFAULT;
     }
+
+    public static KeyBoardButtonText of(String label) {
+        return KeyBoardButtonText.builder().label(label).build();
+    }
 }

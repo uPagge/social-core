@@ -33,4 +33,8 @@ public class BoxAnswer {
     @Description("Идентификатор стикера")
     private Integer stickerId;
 
+    public static BoxAnswer of(String message) {
+        return BoxAnswer.builder().message(message).build();
+    }
+
 }

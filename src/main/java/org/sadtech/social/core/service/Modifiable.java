@@ -9,8 +9,8 @@ import org.sadtech.social.core.domain.content.Message;
  * @author upagge [08/07/2019]
  */
 @FunctionalInterface
-public interface Filter<T extends Message> {
+public interface Modifiable<T extends Message> {
 
-    void processing(T content);
+    void change(T content);
 
 }

@@ -6,6 +6,7 @@ import org.sadtech.social.core.domain.keyboard.KeyBoardButton;
 import org.sadtech.social.core.domain.keyboard.KeyBoardLine;
 import org.sadtech.social.core.domain.keyboard.button.KeyBoardButtonText;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -53,12 +54,7 @@ public class KeyBoards {
      * @return {@link KeyBoard}
      */
     public static KeyBoard verticalMenuString(String... labelButton) {
-        KeyBoard.KeyBoardBuilder keyBoard = KeyBoard.builder().oneTime(true);
-        for (String label : labelButton) {
-            KeyBoardButton keyBoardButton = KeyBoardButtonText.builder().label(label).payload("{\"button\": \"" + label + "\"}").build();
-            keyBoard.lineKeyBoard(KeyBoardLine.builder().buttonKeyBoard(keyBoardButton).build());
-        }
-        return keyBoard.build();
+        return verticalMenuString(Arrays.asList(labelButton));
     }
 
     /**
@@ -68,15 +64,30 @@ public class KeyBoards {
      * @return {@link KeyBoard}
      */
     public static KeyBoard verticalDuoMenuString(String... labelButton) {
+        return verticalDuoMenuString(Arrays.asList(labelButton));
+    }
+
+    /**
+     * Возвращает клавиатуру формата 2х(N/2), где N - это количество элементов в переданном списке
+     *
+     * @param labelButton Список названий для кнопок
+     * @return {@link KeyBoard}
+     */
+    public static KeyBoard verticalDuoMenuString(List<String> labelButton) {
         KeyBoard.KeyBoardBuilder keyBoard = KeyBoard.builder().oneTime(true);
         boolean flag = true;
         KeyBoardLine.KeyBoardLineBuilder keyBoardLine = KeyBoardLine.builder();
-        for (String label : labelButton) {
+        for (int i = 0; i <= labelButton.size() - 1; i++) {
+            String label = labelButton.get(i);
             if (flag) {
-                keyBoardLine.buttonKeyBoard(KeyBoardButtonText.builder().label(label).build());
-                flag = false;
+                keyBoardLine.buttonKeyBoard(KeyBoardButtonText.of(label));
+                if (i == labelButton.size() - 1) {
+                    keyBoard.lineKeyBoard(keyBoardLine.build());
+                } else {
+                    flag = false;
+                }
             } else {
-                keyBoardLine.buttonKeyBoard(KeyBoardButtonText.builder().label(label).build());
+                keyBoardLine.buttonKeyBoard(KeyBoardButtonText.of(label));
                 keyBoard.lineKeyBoard(keyBoardLine.build());
                 keyBoardLine = KeyBoardLine.builder();
                 flag = true;
