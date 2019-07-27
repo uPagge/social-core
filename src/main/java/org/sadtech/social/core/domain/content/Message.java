@@ -1,8 +1,12 @@
 package org.sadtech.social.core.domain.content;
 
+import com.sun.istack.internal.NotNull;
 import lombok.Data;
 import org.sadtech.social.core.utils.Description;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.time.LocalDateTime;
 
 /**
@@ -11,17 +15,22 @@ import java.time.LocalDateTime;
  * @author upagge [08/07/2019]
  */
 @Data
+@Entity
 public abstract class Message {
 
+    @Id
+    @GeneratedValue
     @Description("Идентификатор сообщения")
     private Integer id;
 
     @Description("Тип сообщения")
     protected ContentType type;
 
+    @NotNull
     @Description("Дата создания")
     private LocalDateTime createDate;
 
+    @NotNull
     @Description("Идентификатор пользователя, отправившего сообщение")
     private Integer personId;
 

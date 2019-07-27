@@ -5,6 +5,8 @@ import lombok.EqualsAndHashCode;
 import org.sadtech.social.core.domain.content.attachment.Attachment;
 import org.sadtech.social.core.utils.Description;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.List;
 
 /**
@@ -12,8 +14,10 @@ import java.util.List;
  *
  * @author upagge [08/07/2019]
  */
-@EqualsAndHashCode(callSuper = true)
 @Data
+@Entity
+@Table(name = "mail")
+@EqualsAndHashCode(callSuper = true)
 public class Mail extends Message {
 
     @Description("Вложения к сообщению")
