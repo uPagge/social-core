@@ -1,4 +1,4 @@
-package org.sadtech.social.core.repository.impl;
+package org.sadtech.social.core.repository.impl.local;
 
 import com.google.gson.JsonObject;
 import org.sadtech.social.core.repository.EventRepository;

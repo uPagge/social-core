@@ -1,4 +1,4 @@
-package org.sadtech.social.core.repository.impl;
+package org.sadtech.social.core.repository.impl.local;
 
 import org.sadtech.social.core.domain.money.Account;
 import org.sadtech.social.core.exception.AccessException;

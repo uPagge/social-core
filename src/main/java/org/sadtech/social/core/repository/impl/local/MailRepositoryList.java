@@ -1,4 +1,4 @@
-package org.sadtech.social.core.repository.impl;
+package org.sadtech.social.core.repository.impl.local;
 
 import org.sadtech.social.core.domain.content.Mail;
 import org.sadtech.social.core.repository.ContentRepository;
@@ -7,6 +7,11 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Локальная реализация репозитория на основе {@link ArrayList} для взаимодействия с сущностью {@link Mail}.
+ *
+ * @author upagge [27/07/2019]
+ */
 public class MailRepositoryList implements ContentRepository<Mail> {
 
     private final List<Mail> mails = new ArrayList<>();

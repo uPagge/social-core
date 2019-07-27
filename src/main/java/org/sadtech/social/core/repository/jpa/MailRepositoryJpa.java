@@ -1,32 +1,19 @@
 package org.sadtech.social.core.repository.jpa;
 
 import org.sadtech.social.core.domain.content.Mail;
-import org.sadtech.social.core.repository.ContentRepository;
-import org.sadtech.social.core.repository.jpa.impl.MailRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 /**
- * TODO: Добавить описание класса.
+ * Интерфейс JPA репозитория для сущности {@link Mail}. При этом сам не является репозиторием, а подставляется в
+ * {@link org.sadtech.social.core.repository.impl.jpa.MailRepositoryJpaImpl}
  *
- * @author upagge [25/07/2019]
+ * @author upagge [27/07/2019]
  */
-public class MailRepositoryJpa implements ContentRepository<Mail> {
+public interface MailRepositoryJpa extends JpaRepository<Mail, Integer> {
 
-    private final MailRepository mailRepository;
+    List<Mail> findByCreateDateBetween(LocalDateTime from, LocalDateTime to);
 
-    public MailRepositoryJpa(MailRepository mailRepository) {
-        this.mailRepository = mailRepository;
-    }
-
-    @Override
-    public Integer add(Mail content) {
-        return mailRepository.saveAndFlush(content).getId();
-    }
-
-    @Override
-    public List<Mail> findByTime(LocalDateTime timeFrom, LocalDateTime timeTo) {
-        return mailRepository.findByCreateDateBetween(timeFrom, timeTo);
-    }
 }
