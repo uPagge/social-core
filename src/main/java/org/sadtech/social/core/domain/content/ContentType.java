@@ -7,6 +7,8 @@ package org.sadtech.social.core.domain.content;
  */
 public enum ContentType {
 
-    MAIL, BOARD_COMMENT, EMPTY
+    MAIL,
+    BOARD_COMMENT,
+    EMPTY
 
 }

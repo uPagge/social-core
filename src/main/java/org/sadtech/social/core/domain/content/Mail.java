@@ -5,7 +5,9 @@ import lombok.EqualsAndHashCode;
 import org.sadtech.social.core.domain.content.attachment.Attachment;
 import org.sadtech.social.core.utils.Description;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.List;
 
@@ -20,6 +22,8 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 public class Mail extends Message {
 
+    @OneToMany
+    @Column(name = "attachment")
     @Description("Вложения к сообщению")
     private List<Attachment> attachments;
 
