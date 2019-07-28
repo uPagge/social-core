@@ -3,18 +3,18 @@ package org.sadtech.social.core.repository.impl.jpa;
 import org.sadtech.social.core.domain.money.Account;
 import org.sadtech.social.core.repository.AccountRepository;
 import org.sadtech.social.core.repository.jpa.AccountRepositoryJpa;
-import org.springframework.stereotype.Repository;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * TODO: Добавить описание класса.
  *
  * @author upagge [27/07/2019]
  */
-@Repository
 public class AccountRepositoryJpaImpl implements AccountRepository {
 
     private final AccountRepositoryJpa accountRepositoryJpa;
 
+    @Autowired
     public AccountRepositoryJpaImpl(AccountRepositoryJpa accountRepositoryJpa) {
         this.accountRepositoryJpa = accountRepositoryJpa;
     }

@@ -1,15 +1,15 @@
 package org.sadtech.social.core.domain.content;
 
-import com.sun.istack.internal.NotNull;
 import lombok.Data;
 import org.sadtech.social.core.utils.Description;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 /**
@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
  * @author upagge [08/07/2019]
  */
 @Data
-@Entity
+@MappedSuperclass
 public abstract class Message {
 
     @Id

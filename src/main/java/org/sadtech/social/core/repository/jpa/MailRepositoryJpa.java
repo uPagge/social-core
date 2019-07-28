@@ -2,6 +2,7 @@ package org.sadtech.social.core.repository.jpa;
 
 import org.sadtech.social.core.domain.content.Mail;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.List;
  *
  * @author upagge [27/07/2019]
  */
+@Repository
 public interface MailRepositoryJpa extends JpaRepository<Mail, Integer> {
 
     List<Mail> findByCreateDateBetween(LocalDateTime from, LocalDateTime to);

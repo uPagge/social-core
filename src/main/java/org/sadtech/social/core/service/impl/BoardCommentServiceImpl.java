@@ -35,7 +35,7 @@ public class BoardCommentServiceImpl implements BoardCommentService {
     @Override
     public List<BoardComment> getLastEventByTime(LocalDateTime timeFrom, LocalDateTime timeTo) {
         log.info("Запрошены последние комментарии к обсуждению {} - {} ", timeFrom, timeTo);
-        List<BoardComment> mails = commentRepository.findByTime(timeFrom, timeTo);
+        List<BoardComment> mails = commentRepository.betweenByTime(timeFrom, timeTo);
         Set<Integer> people = new HashSet<>();
         List<BoardComment> returnMails = new ArrayList<>();
         for (int i = mails.size() - 1; i >= 0; i--) {

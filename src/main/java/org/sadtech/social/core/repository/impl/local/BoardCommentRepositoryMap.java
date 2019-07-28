@@ -22,7 +22,7 @@ public class BoardCommentRepositoryMap implements ContentRepository<BoardComment
     }
 
     @Override
-    public List<BoardComment> findByTime(LocalDateTime timeFrom, LocalDateTime timeTo) {
+    public List<BoardComment> betweenByTime(LocalDateTime timeFrom, LocalDateTime timeTo) {
         ArrayList<BoardComment> rezultMails = new ArrayList<>();
         for (int i = saveMap.size() - 1; i >= 0; i--) {
             if (!(saveMap.get(i).getCreateDate().isBefore(timeFrom) || saveMap.get(i).getCreateDate().isAfter(timeTo)) && saveMap.get(i).getCreateDate().equals(timeFrom)) {

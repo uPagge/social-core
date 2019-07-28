@@ -1,13 +1,9 @@
 package org.sadtech.social.core.domain.money;
 
-import com.sun.istack.internal.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 import org.sadtech.social.core.utils.Description;
 
 import javax.persistence.Column;
@@ -17,6 +13,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 /**
  * Сущность, которая отвечает за выставленный пользователю счет.
@@ -24,10 +21,7 @@ import javax.persistence.Table;
  * @author upagge [08/07/2019]
  */
 @Builder
-@Getter
-@Setter
-@EqualsAndHashCode
-@ToString
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity

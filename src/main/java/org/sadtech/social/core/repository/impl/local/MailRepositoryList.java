@@ -24,10 +24,10 @@ public class MailRepositoryList implements ContentRepository<Mail> {
 
 
     @Override
-    public List<Mail> findByTime(LocalDateTime timeFrom, LocalDateTime timeTo) {
+    public List<Mail> betweenByTime(LocalDateTime timeFrom, LocalDateTime timeTo) {
         ArrayList<Mail> rezultMails = new ArrayList<>();
         for (int i = mails.size() - 1; i >= 0; i--) {
-            if (!(mails.get(i).getCreateDate().isBefore(timeFrom) || mails.get(i).getCreateDate().isAfter(timeTo)) && mails.get(i).getCreateDate().equals(timeFrom)) {
+            if (!(mails.get(i).getCreateDate().isBefore(timeFrom) || mails.get(i).getCreateDate().isAfter(timeTo))) {
                 rezultMails.add(this.mails.get(i));
             } else if (mails.get(i).getCreateDate().isBefore(timeFrom)) {
                 break;

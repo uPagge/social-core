@@ -31,7 +31,7 @@ public class MailServiceImpl implements MailService {
     @Override
     public List<Mail> getLastEventByTime(LocalDateTime timeFrom, LocalDateTime timeTo) {
         log.info("Запрошены последние сообщения {} - {} ", timeFrom, timeTo);
-        List<Mail> mails = mailRepository.findByTime(timeFrom, timeTo);
+        List<Mail> mails = mailRepository.betweenByTime(timeFrom, timeTo);
         Set<Integer> people = new HashSet<>();
         List<Mail> returnMails = new ArrayList<>();
         for (int i = mails.size() - 1; i >= 0; i--) {
@@ -46,7 +46,7 @@ public class MailServiceImpl implements MailService {
     @Override
     public List<Mail> getByTime(LocalDateTime timeFrom, LocalDateTime timeTo) {
         log.info("Запрошены все сообщения {} - {} ", timeFrom, timeTo);
-        return mailRepository.findByTime(timeFrom, timeTo);
+        return mailRepository.betweenByTime(timeFrom, timeTo);
     }
 
 }
