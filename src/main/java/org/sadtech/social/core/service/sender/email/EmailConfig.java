@@ -1,7 +1,10 @@
 package org.sadtech.social.core.service.sender.email;
 
+import lombok.Getter;
+
 import java.util.Properties;
 
+@Getter
 public class EmailConfig {
 
     private Properties props = new Properties();
@@ -10,18 +13,6 @@ public class EmailConfig {
 
     private EmailConfig() {
 
-    }
-
-    public Properties getProps() {
-        return props;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public String getPassword() {
-        return password;
     }
 
     public static Builder builder() {

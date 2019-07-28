@@ -1,22 +1,18 @@
 package org.sadtech.social.core.service.impl;
 
 import com.google.gson.JsonObject;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.sadtech.social.core.repository.EventRepository;
 import org.sadtech.social.core.service.RawEventService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.Queue;
 
+@Slf4j
+@RequiredArgsConstructor
 public class RawEventServiceImpl implements RawEventService {
 
-    private static final Logger log = LoggerFactory.getLogger(RawEventServiceImpl.class);
-
     private final EventRepository<JsonObject> eventRepository;
-
-    public RawEventServiceImpl(EventRepository<JsonObject> eventRepository) {
-        this.eventRepository = eventRepository;
-    }
 
     @Override
     public void cleanAll() {

@@ -1,10 +1,10 @@
 package org.sadtech.social.core.service.impl;
 
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.sadtech.social.core.domain.content.Mail;
 import org.sadtech.social.core.repository.ContentRepository;
 import org.sadtech.social.core.service.MailService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -12,15 +12,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+@Slf4j
+@RequiredArgsConstructor
 public class MailServiceImpl implements MailService {
 
-    private static final Logger log = LoggerFactory.getLogger(MailServiceImpl.class);
-
     private final ContentRepository<Mail> mailRepository;
-
-    public MailServiceImpl(ContentRepository<Mail> mailRepository) {
-        this.mailRepository = mailRepository;
-    }
 
     @Override
     public void add(Mail mail) {

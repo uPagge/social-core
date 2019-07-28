@@ -1,10 +1,10 @@
 package org.sadtech.social.core.service.sender.email;
 
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.sadtech.social.core.domain.BoxAnswer;
 import org.sadtech.social.core.exception.MailSendException;
 import org.sadtech.social.core.service.sender.Sent;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.mail.Authenticator;
 import javax.mail.Message;
@@ -15,15 +15,11 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+@Slf4j
+@RequiredArgsConstructor
 public class EmailSent implements Sent {
 
-    private static final Logger log = LoggerFactory.getLogger(Sent.class);
-
     private final EmailConfig emailConfig;
-
-    public EmailSent(EmailConfig emailConfig) {
-        this.emailConfig = emailConfig;
-    }
 
     @Override
     public void send(Integer personId, BoxAnswer boxAnswer) {

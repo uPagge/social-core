@@ -1,18 +1,16 @@
 package org.sadtech.social.core.service.impl;
 
+import lombok.RequiredArgsConstructor;
 import org.sadtech.social.core.domain.money.Account;
 import org.sadtech.social.core.domain.money.AccountStatus;
 import org.sadtech.social.core.exception.PaymentException;
 import org.sadtech.social.core.repository.AccountRepository;
 import org.sadtech.social.core.service.AccountService;
 
+@RequiredArgsConstructor
 public class AccountServiceImpl implements AccountService {
 
     private final AccountRepository accountRepository;
-
-    public AccountServiceImpl(AccountRepository accountRepository) {
-        this.accountRepository = accountRepository;
-    }
 
     @Override
     public Integer add(Account account) {

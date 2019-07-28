@@ -1,23 +1,19 @@
 package org.sadtech.social.core.repository.impl.jpa;
 
+import lombok.RequiredArgsConstructor;
 import org.sadtech.social.core.domain.money.Account;
 import org.sadtech.social.core.repository.AccountRepository;
 import org.sadtech.social.core.repository.jpa.AccountRepositoryJpa;
-import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * TODO: Добавить описание класса.
  *
  * @author upagge [27/07/2019]
  */
+@RequiredArgsConstructor
 public class AccountRepositoryJpaImpl implements AccountRepository {
 
     private final AccountRepositoryJpa accountRepositoryJpa;
-
-    @Autowired
-    public AccountRepositoryJpaImpl(AccountRepositoryJpa accountRepositoryJpa) {
-        this.accountRepositoryJpa = accountRepositoryJpa;
-    }
 
     @Override
     public Integer add(Account account) {

@@ -2,6 +2,7 @@ package org.sadtech.social.core.domain.content;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import org.sadtech.social.core.domain.content.attachment.Attachment;
 import org.sadtech.social.core.utils.Description;
 
@@ -21,6 +22,7 @@ import java.util.List;
 @Entity
 @Table(name = "mail")
 @EqualsAndHashCode(callSuper = true)
+@ToString(callSuper = true)
 public class Mail extends Message {
 
     @OneToMany(fetch = FetchType.EAGER)

@@ -1,13 +1,13 @@
 package org.sadtech.social.core.domain.content;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import org.sadtech.social.core.domain.BasicEntity;
 import org.sadtech.social.core.utils.Description;
 
 import javax.persistence.Column;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
@@ -17,14 +17,11 @@ import java.time.LocalDateTime;
  *
  * @author upagge [08/07/2019]
  */
-@Data
-@MappedSuperclass
-public abstract class Message {
 
-    @Id
-    @GeneratedValue
-    @Description("Идентификатор сообщения")
-    private Integer id;
+@Data
+@EqualsAndHashCode(callSuper = true)
+@MappedSuperclass
+public abstract class Message extends BasicEntity {
 
     @Column(name = "type")
     @Enumerated(value = EnumType.STRING)
