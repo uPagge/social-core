@@ -30,18 +30,13 @@ public class Mail extends Message {
     @Description("Вложения к сообщению")
     private List<Attachment> attachments;
 
+    @OneToMany
+    @Column(name = "forward_mail")
+    @Description("Пересланные сообщения")
+    private List<Mail> forwardMail;
+
     public Mail() {
         type = ContentType.MAIL;
-    }
-
-    public Mail(Mail source) {
-        super(source);
-        this.attachments = source.getAttachments();
-    }
-
-
-    public Mail prototype() {
-        return new Mail(this);
     }
 
 }

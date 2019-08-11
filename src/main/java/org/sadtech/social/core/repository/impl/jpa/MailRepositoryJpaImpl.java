@@ -24,7 +24,13 @@ public class MailRepositoryJpaImpl implements ContentRepository<Mail> {
     }
 
     @Override
-    public List<Mail> betweenByTime(LocalDateTime timeFrom, LocalDateTime timeTo) {
+    public List<Mail> betweenByCreateDateTime(LocalDateTime timeFrom, LocalDateTime timeTo) {
         return mailRepositoryJpa.findByCreateDateBetween(timeFrom, timeTo);
     }
+
+    @Override
+    public List<Mail> betweenByAddDateTime(LocalDateTime from, LocalDateTime to) {
+        return mailRepositoryJpa.findByAddDateBetween(from, to);
+    }
+
 }

@@ -8,6 +8,7 @@ import org.sadtech.social.core.service.MailService;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -25,9 +26,34 @@ public class MailServiceImpl implements MailService {
     }
 
     @Override
-    public List<Mail> getLastEventByTime(LocalDateTime timeFrom, LocalDateTime timeTo) {
-        log.info("Запрошены последние сообщения {} - {} ", timeFrom, timeTo);
-        List<Mail> mails = mailRepository.betweenByTime(timeFrom, timeTo);
+    public List<Mail> getByAddDateTime(LocalDateTime timeFrom, LocalDateTime timeTo) {
+        log.debug("Запрошены все сообщения {} - {} ", timeFrom, timeTo);
+        return mailRepository.betweenByAddDateTime(timeFrom, timeTo);
+    }
+
+    @Override
+    public List<Mail> getLastEventByCreateDateTime(LocalDateTime timeFrom, LocalDateTime timeTo) {
+        log.debug("Запрошены последние сообщения {} - {} ", timeFrom, timeTo);
+        List<Mail> mails = mailRepository.betweenByCreateDateTime(timeFrom, timeTo);
+        if (mails != null && !mails.isEmpty()) {
+            return getReturnMails(mails);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
+    @Override
+    public List<Mail> getLastEventByAddDateTime(LocalDateTime timeFrom, LocalDateTime timeTo) {
+        log.debug("Запрошены последние сообщения {} - {} ", timeFrom, timeTo);
+        List<Mail> mails = mailRepository.betweenByAddDateTime(timeFrom, timeTo);
+        if (mails != null && !mails.isEmpty()) {
+            return getReturnMails(mails);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
+    private List<Mail> getReturnMails(List<Mail> mails) {
         Set<Integer> people = new HashSet<>();
         List<Mail> returnMails = new ArrayList<>();
         for (int i = mails.size() - 1; i >= 0; i--) {
@@ -36,13 +62,11 @@ public class MailServiceImpl implements MailService {
                 people.add(mails.get(i).getPersonId());
             }
         }
-        return returnMails;
-    }
-
-    @Override
-    public List<Mail> getByTime(LocalDateTime timeFrom, LocalDateTime timeTo) {
-        log.info("Запрошены все сообщения {} - {} ", timeFrom, timeTo);
-        return mailRepository.betweenByTime(timeFrom, timeTo);
+        if (!returnMails.isEmpty()) {
+            return returnMails;
+        } else {
+            return Collections.emptyList();
+        }
     }
 
 }

@@ -27,6 +27,8 @@ public interface ContentRepository<T extends Message> {
      * @param timeTo   Конец диапазона
      * @return Список сообщений
      */
-    List<T> betweenByTime(LocalDateTime timeFrom, LocalDateTime timeTo);
+    List<T> betweenByCreateDateTime(LocalDateTime timeFrom, LocalDateTime timeTo);
+
+    List<T> betweenByAddDateTime(LocalDateTime from, LocalDateTime to);
 
 }

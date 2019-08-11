@@ -18,4 +18,6 @@ public interface MailRepositoryJpa extends JpaRepository<Mail, Integer> {
 
     List<Mail> findByCreateDateBetween(LocalDateTime from, LocalDateTime to);
 
+    List<Mail> findByAddDateBetween(LocalDateTime from, LocalDateTime to);
+
 }

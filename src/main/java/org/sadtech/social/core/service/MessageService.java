@@ -20,7 +20,7 @@ public interface MessageService<T extends Message> {
      * @param timeTo Конец интервала
      * @return Список сообщений
      */
-    List<T> getByTime(LocalDateTime timeFrom, LocalDateTime timeTo);
+    List<T> getByAddDateTime(LocalDateTime timeFrom, LocalDateTime timeTo);
 
     /**
      * Получить список ПОСЛЕДНИХ сообщений для каждого пользователя за заданных временной интервал
@@ -28,6 +28,8 @@ public interface MessageService<T extends Message> {
      * @param timeTo Конец интервала
      * @return Список сообщений
      */
-    List<T> getLastEventByTime(LocalDateTime timeFrom, LocalDateTime timeTo);
+    List<T> getLastEventByCreateDateTime(LocalDateTime timeFrom, LocalDateTime timeTo);
+
+    List<T> getLastEventByAddDateTime(LocalDateTime timeFrom, LocalDateTime timeTo);
 
 }

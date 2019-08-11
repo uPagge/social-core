@@ -33,6 +33,10 @@ public abstract class Message extends BasicEntity {
     @Description("Дата создания")
     private LocalDateTime createDate;
 
+    @Column(name = "add_date")
+    @Description("Дата добавления в базу")
+    private LocalDateTime addDate;
+
     @NotNull
     @Column(name = "person_id")
     @Description("Идентификатор пользователя, отправившего сообщение")

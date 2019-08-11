@@ -24,14 +24,25 @@ public class BoardCommentServiceImpl implements BoardCommentService {
     }
 
     @Override
-    public List<BoardComment> getByTime(LocalDateTime timeFrom, LocalDateTime timeTo) {
+    public List<BoardComment> getByAddDateTime(LocalDateTime timeFrom, LocalDateTime timeTo) {
         return null;
     }
 
     @Override
-    public List<BoardComment> getLastEventByTime(LocalDateTime timeFrom, LocalDateTime timeTo) {
+    public List<BoardComment> getLastEventByCreateDateTime(LocalDateTime timeFrom, LocalDateTime timeTo) {
         log.info("Запрошены последние комментарии к обсуждению {} - {} ", timeFrom, timeTo);
-        List<BoardComment> mails = commentRepository.betweenByTime(timeFrom, timeTo);
+        List<BoardComment> mails = commentRepository.betweenByCreateDateTime(timeFrom, timeTo);
+        return getBoardComments(mails);
+    }
+
+    @Override
+    public List<BoardComment> getLastEventByAddDateTime(LocalDateTime timeFrom, LocalDateTime timeTo) {
+        log.info("Запрошены последние комментарии к обсуждению {} - {} ", timeFrom, timeTo);
+        List<BoardComment> mails = commentRepository.betweenByAddDateTime(timeFrom, timeTo);
+        return getBoardComments(mails);
+    }
+
+    private List<BoardComment> getBoardComments(List<BoardComment> mails) {
         Set<Integer> people = new HashSet<>();
         List<BoardComment> returnMails = new ArrayList<>();
         for (int i = mails.size() - 1; i >= 0; i--) {
@@ -42,4 +53,5 @@ public class BoardCommentServiceImpl implements BoardCommentService {
         }
         return returnMails;
     }
+
 }
