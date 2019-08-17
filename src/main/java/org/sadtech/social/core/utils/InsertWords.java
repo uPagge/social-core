@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static org.sadtech.social.core.utils.ExceptionMessages.UTILITY_CLASS;
+
 /**
  * Класс для вставки слов в текстовую строку вместо подстрок - шаблонов маркеров.
  *
@@ -11,8 +13,10 @@ import java.util.regex.Pattern;
  */
 public class InsertWords {
 
+    private static final Pattern pattern = Pattern.compile("\\{(\\d+)}");
+
     private InsertWords() {
-        throw new IllegalStateException("Утилитный класс");
+        throw new IllegalStateException(UTILITY_CLASS);
     }
 
     /**
@@ -23,7 +27,6 @@ public class InsertWords {
      * @return Модифицированная строка
      */
     public static String insert(String text, List<String> words) {
-        Pattern pattern = Pattern.compile("\\{(\\d+)}");
         Matcher m = pattern.matcher(text);
         StringBuffer result = new StringBuffer();
         while (m.find()) {

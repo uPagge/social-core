@@ -7,7 +7,7 @@ import org.sadtech.social.core.domain.BoxAnswer;
  *
  * @author upagge [08/07/2019]
  */
-public interface Sent {
+public interface Sending {
 
     /**
      * Отрпавляет ответ пользователю
@@ -18,5 +18,11 @@ public interface Sent {
     void send(Integer personId, BoxAnswer boxAnswer);
 
     void send(Integer contentId, Integer personId, BoxAnswer boxAnswer);
+
+    /**
+     * Возвращает тип объекта отправляющего ответ пользователя. В зависимости от типа ответ будет отправлен с помощью
+     * разных методов.
+     */
+    SendType getType();
 
 }

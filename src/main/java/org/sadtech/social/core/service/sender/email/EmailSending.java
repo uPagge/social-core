@@ -4,7 +4,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.sadtech.social.core.domain.BoxAnswer;
 import org.sadtech.social.core.exception.MailSendException;
-import org.sadtech.social.core.service.sender.Sent;
+import org.sadtech.social.core.service.sender.SendType;
+import org.sadtech.social.core.service.sender.Sending;
 
 import javax.mail.Authenticator;
 import javax.mail.Message;
@@ -17,7 +18,7 @@ import javax.mail.internet.MimeMessage;
 
 @Slf4j
 @RequiredArgsConstructor
-public class EmailSent implements Sent {
+public class EmailSending implements Sending {
 
     private final EmailConfig emailConfig;
 
@@ -45,5 +46,10 @@ public class EmailSent implements Sent {
     @Override
     public void send(Integer contentId, Integer personId, BoxAnswer boxAnswer) {
         throw new MailSendException();
+    }
+
+    @Override
+    public SendType getType() {
+        return SendType.PUBLIC;
     }
 }

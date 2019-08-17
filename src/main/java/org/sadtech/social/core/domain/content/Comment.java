@@ -1,6 +1,7 @@
 package org.sadtech.social.core.domain.content;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.sadtech.social.core.utils.Description;
 
 /**
@@ -8,6 +9,7 @@ import org.sadtech.social.core.utils.Description;
  *
  * @author upagge [08/07/2019]
  */
+@EqualsAndHashCode(callSuper = true)
 @Data
 public abstract class Comment extends Message {
 
