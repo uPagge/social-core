@@ -6,7 +6,9 @@ import org.sadtech.social.core.domain.content.Mail;
 import org.sadtech.social.core.repository.ContentRepository;
 import org.sadtech.social.core.service.MailService;
 
+import java.time.Clock;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -18,10 +20,13 @@ import java.util.Set;
 public class MailServiceImpl implements MailService {
 
     private final ContentRepository<Mail> mailRepository;
+    private boolean newMessage = false;
+    private LocalDateTime oldDateTime = LocalDateTime.now(Clock.tickSeconds(ZoneId.systemDefault()));
 
     @Override
     public void add(Mail mail) {
         mailRepository.add(mail);
+        newMessage = true;
         log.info("Сообщение добавлено в репозиторий | {}", mail);
     }
 
@@ -51,6 +56,17 @@ public class MailServiceImpl implements MailService {
         } else {
             return Collections.emptyList();
         }
+    }
+
+    @Override
+    public List<Mail> getNewMessage(LocalDateTime now) {
+        List<Mail> lastEventByAddDateTime = Collections.emptyList();
+        if (newMessage) {
+            lastEventByAddDateTime = getLastEventByAddDateTime(oldDateTime, now);
+            newMessage = false;
+        }
+        oldDateTime = now;
+        return lastEventByAddDateTime;
     }
 
     private List<Mail> getReturnMails(List<Mail> mails) {

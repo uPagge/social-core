@@ -42,6 +42,11 @@ public class BoardCommentServiceImpl implements BoardCommentService {
         return getBoardComments(mails);
     }
 
+    @Override
+    public List<BoardComment> getNewMessage(LocalDateTime now) {
+        return null;
+    }
+
     private List<BoardComment> getBoardComments(List<BoardComment> mails) {
         Set<Integer> people = new HashSet<>();
         List<BoardComment> returnMails = new ArrayList<>();
