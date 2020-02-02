@@ -35,11 +35,8 @@ public interface MessageService<T extends Message> {
     List<T> getLastEventByAddDateTime(LocalDateTime timeFrom, LocalDateTime timeTo);
 
     /**
-     * Возвращает новые сообщения пользователей по дате добавления в хранилище.
-     *
-     * @param now Текущяя дата и время
-     * @return Последнее сообщение пользователя от последней переданной даты now
+     * Возвращает новые сообщения от последнего запроса.
      */
-    List<T> getNewMessage(LocalDateTime now);
+    List<T> getNewMessage();
 
 }

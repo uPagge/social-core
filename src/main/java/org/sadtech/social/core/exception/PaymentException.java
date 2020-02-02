@@ -7,8 +7,8 @@ package org.sadtech.social.core.exception;
  */
 public class PaymentException extends AppBotException {
 
-    public PaymentException(Integer code, String message) {
-        super(code, message);
+    public PaymentException(String message) {
+        super(message);
     }
 
 }

@@ -17,13 +17,13 @@ import java.util.List;
 public class MailRepositoryList implements ContentRepository<Mail> {
 
     private final List<Mail> mails = new ArrayList<>();
+    private Long count = 0L;
 
     @Override
-    public Integer add(Mail mail) {
-        int id = mails.size();
-        mail.setId(id);
+    public Mail add(Mail mail) {
+        mail.setId(count++);
         mails.add(mail);
-        return id;
+        return mail;
     }
 
     @Override

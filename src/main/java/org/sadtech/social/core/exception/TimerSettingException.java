@@ -8,7 +8,7 @@ package org.sadtech.social.core.exception;
 public class TimerSettingException extends AppBotException {
 
     public TimerSettingException(String message) {
-        super(54, message);
+        super(message);
     }
 
 }

@@ -1,5 +1,6 @@
 package org.sadtech.social.core.service.sender.email;
 
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.sadtech.social.core.domain.BoxAnswer;
@@ -23,7 +24,7 @@ public class EmailSending implements Sending {
     private final EmailConfig emailConfig;
 
     @Override
-    public void send(Integer personId, BoxAnswer boxAnswer) {
+    public void send(@NonNull Long personId, @NonNull BoxAnswer boxAnswer) {
         Session session = Session.getDefaultInstance(emailConfig.getProps(), new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
@@ -44,7 +45,7 @@ public class EmailSending implements Sending {
     }
 
     @Override
-    public void send(Integer contentId, Integer personId, BoxAnswer boxAnswer) {
+    public void send(@NonNull Long contentId, @NonNull Long personId, @NonNull BoxAnswer boxAnswer) {
         throw new MailSendException();
     }
 

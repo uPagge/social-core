@@ -22,6 +22,6 @@ public class EmptyMessage extends Message {
 
     @Override
     public void setText(String text) {
-        throw new AppBotException(0, "EmptyMessage no setText");
+        throw new AppBotException("EmptyMessage no setText");
     }
 }

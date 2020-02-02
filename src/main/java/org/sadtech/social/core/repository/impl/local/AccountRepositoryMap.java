@@ -22,7 +22,7 @@ public class AccountRepositoryMap implements AccountRepository {
             saveMap.put(id, account);
             return id++;
         } else {
-            throw new AccessException(312, "Счет " + account.getId() + " уже существует");
+            throw new AccessException("Счет " + account.getId() + " уже существует");
         }
 
     }
@@ -33,13 +33,13 @@ public class AccountRepositoryMap implements AccountRepository {
             account.setId(accountId);
             saveMap.put(accountId, account);
         } else {
-            throw new NotFoundException(491, "Счет " + accountId + " не найден");
+            throw new NotFoundException("Счет " + accountId + " не найден");
         }
     }
 
     @Override
     public Account findById(Integer accountId) {
-        return Optional.ofNullable(saveMap.get(accountId)).orElseThrow(() -> new PaymentException(43, "Счет " + accountId + " не найден"));
+        return Optional.ofNullable(saveMap.get(accountId)).orElseThrow(() -> new PaymentException("Счет " + accountId + " не найден"));
     }
 
     private boolean check(Integer id) {

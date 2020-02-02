@@ -18,7 +18,7 @@ public interface ContentRepository<T extends Message> {
      * @param content Объект сообщени
      * @return Идентификатор сообщения в хранилище
      */
-    Integer add(T content);
+    T add(T content);
 
     /**
      * Получить все сообщения за определенный временной диапазон

@@ -6,7 +6,9 @@ package org.sadtech.social.core.exception;
  * @author upagge [08/07/2019]
  */
 public class NotFoundException extends AppBotException {
-    public NotFoundException(Integer code, String message) {
-        super(code, message);
+
+    public NotFoundException(String message) {
+        super(message);
     }
+
 }

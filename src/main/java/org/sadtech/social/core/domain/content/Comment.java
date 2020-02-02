@@ -14,6 +14,6 @@ import org.sadtech.social.core.utils.Description;
 public abstract class Comment extends Message {
 
     @Description("Идентификатор контента, к которому ставлено сообщение")
-    private Integer contentId;
+    private Long contentId;
 
 }

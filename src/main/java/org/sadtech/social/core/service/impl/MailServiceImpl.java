@@ -59,18 +59,19 @@ public class MailServiceImpl implements MailService {
     }
 
     @Override
-    public List<Mail> getNewMessage(LocalDateTime now) {
+    public List<Mail> getNewMessage() {
+        LocalDateTime newData = LocalDateTime.now(Clock.tickSeconds(ZoneId.systemDefault())).plusNanos(999999999);
         List<Mail> lastEventByAddDateTime = Collections.emptyList();
         if (newMessage) {
-            lastEventByAddDateTime = getLastEventByAddDateTime(oldDateTime, now);
+            lastEventByAddDateTime = getLastEventByAddDateTime(oldDateTime, newData);
             newMessage = false;
+            oldDateTime = newData;
         }
-        oldDateTime = now;
         return lastEventByAddDateTime;
     }
 
     private List<Mail> getReturnMails(List<Mail> mails) {
-        Set<Integer> people = new HashSet<>();
+        Set<Long> people = new HashSet<>();
         List<Mail> returnMails = new ArrayList<>();
         for (int i = mails.size() - 1; i >= 0; i--) {
             if (!people.contains(mails.get(i).getPersonId())) {

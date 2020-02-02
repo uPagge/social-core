@@ -11,12 +11,15 @@ public class AppBotException extends RuntimeException {
 
     private static final String TYPE = "ERROR";
     private final LocalDateTime timeError = LocalDateTime.now();
-    protected final Integer code;
-    protected final String description;
+    protected String description;
 
-    public AppBotException(Integer code, String message) {
-        this.description = message;
-        this.code = code;
+    public AppBotException(String message) {
+        super(message);
+    }
+
+    public AppBotException(String message, String description) {
+        super(message);
+        this.description = description;
     }
 
     public String getType() {
@@ -25,10 +28,6 @@ public class AppBotException extends RuntimeException {
 
     public LocalDateTime getTimeError() {
         return timeError;
-    }
-
-    public Integer getCode() {
-        return code;
     }
 
     public String getDescription() {

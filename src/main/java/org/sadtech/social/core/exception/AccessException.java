@@ -6,7 +6,7 @@ package org.sadtech.social.core.exception;
  * @author upagge [08/07/2019]
  */
 public class AccessException extends AppBotException {
-    public AccessException(Integer code, String message) {
-        super(code, message);
+    public AccessException(String message) {
+        super(message);
     }
 }

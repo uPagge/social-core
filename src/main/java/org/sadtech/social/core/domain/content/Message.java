@@ -40,7 +40,7 @@ public abstract class Message extends BasicEntity {
     @NotNull
     @Column(name = "person_id")
     @Description("Идентификатор пользователя, отправившего сообщение")
-    private Integer personId;
+    private Long personId;
 
     @Column(name = "text")
     @Description("Текстовое сообщение")

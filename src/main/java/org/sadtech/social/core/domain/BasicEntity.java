@@ -19,6 +19,6 @@ public class BasicEntity {
 
     @Id
     @GeneratedValue
-    protected Integer id;
+    protected Long id;
 
 }

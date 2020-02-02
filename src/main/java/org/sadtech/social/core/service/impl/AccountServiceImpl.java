@@ -29,10 +29,10 @@ public class AccountServiceImpl implements AccountService {
             } else {
                 account.setAccountStatus(AccountStatus.EXCEPTION);
                 accountRepository.edit(accountId, account);
-                throw new PaymentException(2, "Неверная сумма");
+                throw new PaymentException("Неверная сумма");
             }
         } else {
-            throw new PaymentException(3, "Счет уже оплачен");
+            throw new PaymentException("Счет уже оплачен");
         }
         return true;
     }

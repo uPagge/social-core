@@ -40,7 +40,7 @@ public class Account {
 
     @Column(name = "belongs_person_id")
     @Description("Идентификатор пользователя, которому выставлен счет")
-    private Integer belongsPersonId;
+    private Long belongsPersonId;
 
     @Column(name = "extinguished_person_id")
     @Description("Идентификатор пользователя, который оплатил счет")

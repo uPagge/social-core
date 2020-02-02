@@ -11,14 +11,14 @@ import java.util.Map;
 
 public class BoardCommentRepositoryMap implements ContentRepository<BoardComment> {
 
-    private final Map<Integer, BoardComment> saveMap = new HashMap<>();
-    private Integer count = 0;
+    private final Map<Long, BoardComment> saveMap = new HashMap<>();
+    private Long count = 0L;
 
     @Override
-    public Integer add(BoardComment comment) {
+    public BoardComment add(BoardComment comment) {
         comment.setId(count);
-        saveMap.put(count, comment);
-        return count++;
+        saveMap.put(count++, comment);
+        return comment;
     }
 
     @Override

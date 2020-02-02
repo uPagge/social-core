@@ -43,12 +43,12 @@ public class BoardCommentServiceImpl implements BoardCommentService {
     }
 
     @Override
-    public List<BoardComment> getNewMessage(LocalDateTime now) {
+    public List<BoardComment> getNewMessage() {
         return null;
     }
 
     private List<BoardComment> getBoardComments(List<BoardComment> mails) {
-        Set<Integer> people = new HashSet<>();
+        Set<Long> people = new HashSet<>();
         List<BoardComment> returnMails = new ArrayList<>();
         for (int i = mails.size() - 1; i >= 0; i--) {
             if (!people.contains(mails.get(i).getPersonId())) {

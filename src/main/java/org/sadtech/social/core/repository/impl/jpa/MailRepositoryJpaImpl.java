@@ -19,8 +19,8 @@ public class MailRepositoryJpaImpl implements ContentRepository<Mail> {
     private final MailRepositoryJpa mailRepositoryJpa;
 
     @Override
-    public Integer add(Mail content) {
-        return mailRepositoryJpa.saveAndFlush(content).getId();
+    public Mail add(Mail content) {
+        return mailRepositoryJpa.saveAndFlush(content);
     }
 
     @Override
