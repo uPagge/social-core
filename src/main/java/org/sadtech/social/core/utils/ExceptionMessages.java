@@ -7,9 +7,10 @@ package org.sadtech.social.core.utils;
  */
 public class ExceptionMessages {
 
-    public final static String UTILITY_CLASS = "Класс утилита";
+    public static final String UTILITY_CLASS = "Класс утилита";
 
     private ExceptionMessages() {
         throw new IllegalStateException(UTILITY_CLASS);
     }
+
 }

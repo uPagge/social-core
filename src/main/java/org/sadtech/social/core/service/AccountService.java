@@ -1,5 +1,6 @@
 package org.sadtech.social.core.service;
 
+import lombok.NonNull;
 import org.sadtech.social.core.domain.money.Account;
 
 /**
@@ -9,7 +10,7 @@ import org.sadtech.social.core.domain.money.Account;
  */
 public interface AccountService {
 
-    Integer add(Account account);
+    Account add(@NonNull Account account);
 
     /**
      * Метод для оплаты счета
@@ -19,7 +20,7 @@ public interface AccountService {
      * @param sum                  Сумма оплаты
      * @return true - в случае успешной оплаты
      */
-    Boolean pay(Integer accountId, Integer extinguishedPersonId, Integer sum);
+    boolean pay(@NonNull Integer accountId, @NonNull Integer extinguishedPersonId, @NonNull Integer sum);
 
     /**
      * Проверка оплаты счета
@@ -27,6 +28,6 @@ public interface AccountService {
      * @param accountId Идентификатор счета
      * @return true - если счет оплачен
      */
-    Boolean paymentVerification(Integer accountId);
+    boolean paymentVerification(@NonNull Integer accountId);
 
 }

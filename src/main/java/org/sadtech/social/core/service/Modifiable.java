@@ -1,5 +1,6 @@
 package org.sadtech.social.core.service;
 
+import lombok.NonNull;
 import org.sadtech.social.core.domain.content.Message;
 
 /**
@@ -11,6 +12,6 @@ import org.sadtech.social.core.domain.content.Message;
 @FunctionalInterface
 public interface Modifiable<T extends Message> {
 
-    void change(T content);
+    void change(@NonNull T content);
 
 }

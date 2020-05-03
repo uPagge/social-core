@@ -1,6 +1,9 @@
 package org.sadtech.social.core.repository;
 
+import lombok.NonNull;
 import org.sadtech.social.core.domain.money.Account;
+
+import java.util.Optional;
 
 /**
  * Репозиторий для взаимодействия с хранилищем счетов {@link Account}.
@@ -9,10 +12,10 @@ import org.sadtech.social.core.domain.money.Account;
  */
 public interface AccountRepository {
 
-    Integer add(Account account);
+    Account save(@NonNull Account account);
 
-    void edit(Integer accountId, Account account);
+    Optional<Account> findById(@NonNull Integer accountId);
 
-    Account findById(Integer accountId);
+    boolean existsById(Integer id);
 
 }

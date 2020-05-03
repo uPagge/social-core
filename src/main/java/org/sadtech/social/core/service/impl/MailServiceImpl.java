@@ -27,18 +27,18 @@ public class MailServiceImpl implements MailService {
     public void add(Mail mail) {
         mailRepository.add(mail);
         newMessage = true;
-        log.info("Сообщение добавлено в репозиторий | {}", mail);
+        log.trace("Сообщение добавлено в репозиторий | {}", mail);
     }
 
     @Override
     public List<Mail> getByAddDateTime(LocalDateTime timeFrom, LocalDateTime timeTo) {
-        log.debug("Запрошены все сообщения {} - {} ", timeFrom, timeTo);
+        log.trace("Запрошены все сообщения {} - {} ", timeFrom, timeTo);
         return mailRepository.betweenByAddDateTime(timeFrom, timeTo);
     }
 
     @Override
     public List<Mail> getLastEventByCreateDateTime(LocalDateTime timeFrom, LocalDateTime timeTo) {
-        log.debug("Запрошены последние сообщения {} - {} ", timeFrom, timeTo);
+        log.trace("Запрошены последние сообщения {} - {} ", timeFrom, timeTo);
         List<Mail> mails = mailRepository.betweenByCreateDateTime(timeFrom, timeTo);
         if (mails != null && !mails.isEmpty()) {
             return getReturnMails(mails);
@@ -49,7 +49,7 @@ public class MailServiceImpl implements MailService {
 
     @Override
     public List<Mail> getLastEventByAddDateTime(LocalDateTime timeFrom, LocalDateTime timeTo) {
-        log.debug("Запрошены последние сообщения {} - {} ", timeFrom, timeTo);
+        log.trace("Запрошены последние сообщения {} - {} ", timeFrom, timeTo);
         List<Mail> mails = mailRepository.betweenByAddDateTime(timeFrom, timeTo);
         if (mails != null && !mails.isEmpty()) {
             return getReturnMails(mails);

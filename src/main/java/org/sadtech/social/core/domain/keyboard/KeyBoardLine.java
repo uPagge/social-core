@@ -15,10 +15,10 @@ import java.util.List;
  *
  * @author upagge [08/07/2019]
  */
-@Builder
 @Getter
-@EqualsAndHashCode
+@Builder
 @ToString
+@EqualsAndHashCode
 public class KeyBoardLine {
 
     @Description("Кнопки в строке")

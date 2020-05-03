@@ -24,4 +24,5 @@ public class EmptyMessage extends Message {
     public void setText(String text) {
         throw new AppBotException("EmptyMessage no setText");
     }
+
 }

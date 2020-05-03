@@ -10,8 +10,8 @@ import org.sadtech.social.core.domain.keyboard.KeyBoardButton;
 import org.sadtech.social.core.utils.Description;
 
 @Getter
-@EqualsAndHashCode(callSuper = true)
 @ToString
+@EqualsAndHashCode(callSuper = true)
 public class KeyBoardButtonText extends KeyBoardButton {
 
     @Description("Надпись на кнопке")
@@ -30,4 +30,5 @@ public class KeyBoardButtonText extends KeyBoardButton {
     public static KeyBoardButtonText of(String label) {
         return KeyBoardButtonText.builder().label(label).build();
     }
+
 }

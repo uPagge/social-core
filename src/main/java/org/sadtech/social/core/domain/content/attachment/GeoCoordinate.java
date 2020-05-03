@@ -15,6 +15,7 @@ public class GeoCoordinate {
 
     @Description("Широта")
     private Float latitude;
+
     @Description("Долгота")
     private Float longitude;
 

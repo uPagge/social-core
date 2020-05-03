@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 /**
- * Аьстрактная сущность - Сообщение от пользователя.
+ * Абстрактная сущность - Сообщение от пользователя.
  *
  * @author upagge [08/07/2019]
  */

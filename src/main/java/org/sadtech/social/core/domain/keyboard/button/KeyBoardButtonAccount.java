@@ -14,8 +14,8 @@ import org.sadtech.social.core.utils.Description;
  * @author upagge [08/07/2019]
  */
 @Getter
-@EqualsAndHashCode(callSuper = true)
 @ToString
+@EqualsAndHashCode(callSuper = true)
 public class KeyBoardButtonAccount extends KeyBoardButton {
 
     @Description("Сумма к оплате")
@@ -34,4 +34,5 @@ public class KeyBoardButtonAccount extends KeyBoardButton {
         this.accountId = accountId;
         this.description = description;
     }
+
 }

@@ -1,7 +1,8 @@
 package org.sadtech.social.core.domain.content;
 
-import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import org.sadtech.social.core.utils.Description;
 
 /**
@@ -9,8 +10,9 @@ import org.sadtech.social.core.utils.Description;
  *
  * @author upagge [08/07/2019]
  */
+@Getter
+@Setter
 @EqualsAndHashCode(callSuper = true)
-@Data
 public abstract class Comment extends Message {
 
     @Description("Идентификатор контента, к которому ставлено сообщение")

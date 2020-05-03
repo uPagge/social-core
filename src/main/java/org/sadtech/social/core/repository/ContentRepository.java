@@ -1,5 +1,6 @@
 package org.sadtech.social.core.repository;
 
+import lombok.NonNull;
 import org.sadtech.social.core.domain.content.Message;
 
 import java.time.LocalDateTime;
@@ -18,17 +19,17 @@ public interface ContentRepository<T extends Message> {
      * @param content Объект сообщени
      * @return Идентификатор сообщения в хранилище
      */
-    T add(T content);
+    T add(@NonNull T content);
 
     /**
      * Получить все сообщения за определенный временной диапазон
      *
-     * @param timeFrom Начало временного диапазона
-     * @param timeTo   Конец диапазона
+     * @param dateFrom Начало временного диапазона
+     * @param dateTo   Конец диапазона
      * @return Список сообщений
      */
-    List<T> betweenByCreateDateTime(LocalDateTime timeFrom, LocalDateTime timeTo);
+    List<T> betweenByCreateDateTime(@NonNull LocalDateTime dateFrom, @NonNull LocalDateTime dateTo);
 
-    List<T> betweenByAddDateTime(LocalDateTime from, LocalDateTime to);
+    List<T> betweenByAddDateTime(@NonNull LocalDateTime dateFrom, @NonNull LocalDateTime dateTo);
 
 }

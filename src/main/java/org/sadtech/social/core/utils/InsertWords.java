@@ -1,10 +1,10 @@
 package org.sadtech.social.core.utils;
 
+import lombok.NonNull;
+
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import static org.sadtech.social.core.utils.ExceptionMessages.UTILITY_CLASS;
 
 /**
  * Класс для вставки слов в текстовую строку вместо подстрок - шаблонов маркеров.
@@ -16,7 +16,7 @@ public class InsertWords {
     private static final Pattern pattern = Pattern.compile("\\{(\\d+)}");
 
     private InsertWords() {
-        throw new IllegalStateException(UTILITY_CLASS);
+        throw new IllegalStateException(ExceptionMessages.UTILITY_CLASS);
     }
 
     /**
@@ -26,7 +26,7 @@ public class InsertWords {
      * @param words Список слов, которые необходимо поместить вместо шаблона
      * @return Модифицированная строка
      */
-    public static String insert(String text, List<String> words) {
+    public static String insert(@NonNull String text, List<String> words) {
         Matcher m = pattern.matcher(text);
         StringBuffer result = new StringBuffer();
         while (m.find()) {
@@ -39,6 +39,7 @@ public class InsertWords {
         m.appendTail(result);
         return result.toString();
     }
+
 }
 
 

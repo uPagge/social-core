@@ -1,5 +1,6 @@
 package org.sadtech.social.core.repository.impl.local;
 
+import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.sadtech.social.core.domain.content.Mail;
 import org.sadtech.social.core.repository.ContentRepository;
@@ -27,13 +28,13 @@ public class MailRepositoryList implements ContentRepository<Mail> {
     }
 
     @Override
-    public List<Mail> betweenByCreateDateTime(LocalDateTime from, LocalDateTime to) {
+    public List<Mail> betweenByCreateDateTime(@NonNull LocalDateTime dateFrom, @NonNull LocalDateTime dateTo) {
         ArrayList<Mail> rezultMails = new ArrayList<>();
         for (int i = mails.size() - 1; i >= 0; i--) {
             Mail mail = mails.get(i);
-            if (isTimePeriod(from, to, mail.getAddDate())) {
+            if (isTimePeriod(dateFrom, dateTo, mail.getAddDate())) {
                 rezultMails.add(mail);
-            } else if (mail.getCreateDate().isBefore(from)) {
+            } else if (mail.getCreateDate().isBefore(dateFrom)) {
                 break;
             }
         }
@@ -41,22 +42,22 @@ public class MailRepositoryList implements ContentRepository<Mail> {
     }
 
     @Override
-    public List<Mail> betweenByAddDateTime(LocalDateTime from, LocalDateTime to) {
+    public List<Mail> betweenByAddDateTime(@NonNull LocalDateTime dateFrom, @NonNull LocalDateTime dateTo) {
         ArrayList<Mail> rezultMails = new ArrayList<>();
         for (int i = mails.size() - 1; i >= 0; i--) {
             Mail mail = mails.get(i);
             LocalDateTime addDate = mail.getAddDate();
-            if (isTimePeriod(from, to, addDate)) {
+            if (isTimePeriod(dateFrom, dateTo, addDate)) {
                 rezultMails.add(mail);
-            } else if (addDate.isBefore(from)) {
+            } else if (addDate.isBefore(dateFrom)) {
                 break;
             }
         }
         return rezultMails;
     }
 
-    private boolean isTimePeriod(LocalDateTime from, LocalDateTime to, LocalDateTime dateTime) {
-        return from.isBefore(dateTime) && to.isAfter(dateTime);
+    private boolean isTimePeriod(@NonNull LocalDateTime dateFrom, @NonNull LocalDateTime dateTo, @NonNull LocalDateTime dateTime) {
+        return dateFrom.isBefore(dateTime) && dateTo.isAfter(dateTime);
     }
 
 

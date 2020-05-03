@@ -1,5 +1,6 @@
 package org.sadtech.social.core.repository.impl.jpa;
 
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.sadtech.social.core.domain.content.Mail;
 import org.sadtech.social.core.repository.ContentRepository;
@@ -19,18 +20,18 @@ public class MailRepositoryJpaImpl implements ContentRepository<Mail> {
     private final MailRepositoryJpa mailRepositoryJpa;
 
     @Override
-    public Mail add(Mail content) {
+    public Mail add(@NonNull Mail content) {
         return mailRepositoryJpa.saveAndFlush(content);
     }
 
     @Override
-    public List<Mail> betweenByCreateDateTime(LocalDateTime timeFrom, LocalDateTime timeTo) {
-        return mailRepositoryJpa.findByCreateDateBetween(timeFrom, timeTo);
+    public List<Mail> betweenByCreateDateTime(@NonNull LocalDateTime dateFrom, @NonNull LocalDateTime dateTo) {
+        return mailRepositoryJpa.findByCreateDateBetween(dateFrom, dateTo);
     }
 
     @Override
-    public List<Mail> betweenByAddDateTime(LocalDateTime from, LocalDateTime to) {
-        return mailRepositoryJpa.findByAddDateBetween(from, to);
+    public List<Mail> betweenByAddDateTime(@NonNull LocalDateTime dateFrom, @NonNull LocalDateTime dateTo) {
+        return mailRepositoryJpa.findByAddDateBetween(dateFrom, dateTo);
     }
 
 }

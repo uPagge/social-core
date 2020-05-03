@@ -26,4 +26,5 @@ public class AudioMessage extends Attachment {
     public AudioMessage() {
         type = AttachmentType.AUDIO_MESSAGE;
     }
+
 }

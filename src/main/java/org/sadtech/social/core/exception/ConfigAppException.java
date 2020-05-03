@@ -6,7 +6,9 @@ package org.sadtech.social.core.exception;
  * @author upagge [11/07/2019]
  */
 public class ConfigAppException extends AppBotException {
+
     public ConfigAppException(String message) {
         super(message);
     }
+
 }

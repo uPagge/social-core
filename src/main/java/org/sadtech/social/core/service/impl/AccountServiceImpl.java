@@ -1,8 +1,11 @@
 package org.sadtech.social.core.service.impl;
 
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.sadtech.social.core.domain.money.Account;
 import org.sadtech.social.core.domain.money.AccountStatus;
+import org.sadtech.social.core.exception.AccessException;
+import org.sadtech.social.core.exception.NotFoundException;
 import org.sadtech.social.core.exception.PaymentException;
 import org.sadtech.social.core.repository.AccountRepository;
 import org.sadtech.social.core.service.AccountService;
@@ -13,22 +16,27 @@ public class AccountServiceImpl implements AccountService {
     private final AccountRepository accountRepository;
 
     @Override
-    public Integer add(Account account) {
-        account.setAccountStatus(AccountStatus.EXPOSED);
-        return accountRepository.add(account);
+    public Account add(@NonNull Account account) {
+        if (accountRepository.existsById(account.getId())) {
+            account.setAccountStatus(AccountStatus.EXPOSED);
+            return accountRepository.save(account);
+        } else {
+            throw new AccessException("Счет " + account.getId() + " уже присутствует в базе");
+        }
     }
 
     @Override
-    public Boolean pay(Integer accountId, Integer extinguishedPersonId, Integer sum) {
-        Account account = accountRepository.findById(accountId);
+    public boolean pay(@NonNull Integer accountId, @NonNull Integer extinguishedPersonId, @NonNull Integer sum) {
+        Account account = accountRepository.findById(accountId)
+                .orElseThrow(() -> new NotFoundException("Счет " + accountId + " не найден"));
         if (validStatus(account.getAccountStatus())) {
             if (account.getTotalSum().equals(sum)) {
                 account.setAccountStatus(AccountStatus.CLOSED);
                 account.setExtinguishedPersonId(extinguishedPersonId);
-                accountRepository.edit(accountId, account);
+                accountRepository.save(account);
             } else {
                 account.setAccountStatus(AccountStatus.EXCEPTION);
-                accountRepository.edit(accountId, account);
+                accountRepository.save(account);
                 throw new PaymentException("Неверная сумма");
             }
         } else {
@@ -37,12 +45,17 @@ public class AccountServiceImpl implements AccountService {
         return true;
     }
 
-    private boolean validStatus(AccountStatus accountStatus) {
+    private boolean validStatus(@NonNull AccountStatus accountStatus) {
         return AccountStatus.EXCEPTION.equals(accountStatus) || AccountStatus.EXPOSED.equals(accountStatus);
     }
 
     @Override
-    public Boolean paymentVerification(Integer accountId) {
-        return AccountStatus.CLOSED.equals(accountRepository.findById(accountId).getAccountStatus());
+    public boolean paymentVerification(@NonNull Integer accountId) {
+        return AccountStatus.CLOSED.equals(
+                accountRepository.findById(accountId)
+                        .orElseThrow(() -> new NotFoundException("Счет " + accountId + " не найден"))
+                        .getAccountStatus()
+        );
     }
+
 }

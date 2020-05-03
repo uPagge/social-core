@@ -1,13 +1,14 @@
 package org.sadtech.social.core.repository.impl.jpa;
 
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.sadtech.social.core.domain.money.Account;
 import org.sadtech.social.core.repository.AccountRepository;
 import org.sadtech.social.core.repository.jpa.AccountRepositoryJpa;
 
+import java.util.Optional;
+
 /**
- * TODO: Добавить описание класса.
- *
  * @author upagge [27/07/2019]
  */
 @RequiredArgsConstructor
@@ -16,18 +17,18 @@ public class AccountRepositoryJpaImpl implements AccountRepository {
     private final AccountRepositoryJpa accountRepositoryJpa;
 
     @Override
-    public Integer add(Account account) {
-        return accountRepositoryJpa.saveAndFlush(account).getId();
+    public Account save(@NonNull Account account) {
+        return accountRepositoryJpa.save(account);
     }
 
     @Override
-    public void edit(Integer accountId, Account account) {
-        account.setId(accountId);
-        accountRepositoryJpa.saveAndFlush(account);
+    public Optional<Account> findById(@NonNull Integer accountId) {
+        return accountRepositoryJpa.findById(accountId);
     }
 
     @Override
-    public Account findById(Integer accountId) {
-        return accountRepositoryJpa.getOne(accountId);
+    public boolean existsById(Integer id) {
+        return accountRepositoryJpa.existsById(id);
     }
+
 }

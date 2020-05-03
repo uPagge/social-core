@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.sadtech.social.core.domain.content.BoardComment;
 import org.sadtech.social.core.repository.ContentRepository;
-import org.sadtech.social.core.service.BoardCommentService;
+import org.sadtech.social.core.service.MessageService;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -14,7 +14,7 @@ import java.util.Set;
 
 @Slf4j
 @RequiredArgsConstructor
-public class BoardCommentServiceImpl implements BoardCommentService {
+public class BoardCommentServiceImpl implements MessageService<BoardComment> {
 
     private final ContentRepository<BoardComment> commentRepository;
 
@@ -25,26 +25,26 @@ public class BoardCommentServiceImpl implements BoardCommentService {
 
     @Override
     public List<BoardComment> getByAddDateTime(LocalDateTime timeFrom, LocalDateTime timeTo) {
-        return null;
+        throw new IllegalStateException("Не реализовано");
     }
 
     @Override
     public List<BoardComment> getLastEventByCreateDateTime(LocalDateTime timeFrom, LocalDateTime timeTo) {
-        log.info("Запрошены последние комментарии к обсуждению {} - {} ", timeFrom, timeTo);
+        log.trace("Запрошены последние комментарии к обсуждению {} - {} ", timeFrom, timeTo);
         List<BoardComment> mails = commentRepository.betweenByCreateDateTime(timeFrom, timeTo);
         return getBoardComments(mails);
     }
 
     @Override
     public List<BoardComment> getLastEventByAddDateTime(LocalDateTime timeFrom, LocalDateTime timeTo) {
-        log.info("Запрошены последние комментарии к обсуждению {} - {} ", timeFrom, timeTo);
+        log.trace("Запрошены последние комментарии к обсуждению {} - {} ", timeFrom, timeTo);
         List<BoardComment> mails = commentRepository.betweenByAddDateTime(timeFrom, timeTo);
         return getBoardComments(mails);
     }
 
     @Override
     public List<BoardComment> getNewMessage() {
-        return null;
+        throw new IllegalStateException("Не реализовано");
     }
 
     private List<BoardComment> getBoardComments(List<BoardComment> mails) {

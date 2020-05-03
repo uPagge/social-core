@@ -3,8 +3,6 @@ package org.sadtech.social.core.utils;
 import org.sadtech.social.core.domain.content.EmptyMessage;
 import org.sadtech.social.core.domain.content.Message;
 
-import static org.sadtech.social.core.utils.ExceptionMessages.UTILITY_CLASS;
-
 /**
  * Класс для хранения объекта заглушки для {@link Message}.
  *
@@ -12,11 +10,10 @@ import static org.sadtech.social.core.utils.ExceptionMessages.UTILITY_CLASS;
  */
 public class MessageUtils {
 
-    private MessageUtils() {
-        throw new IllegalStateException(UTILITY_CLASS);
-    }
-
     public static final EmptyMessage EMPTY_MESSAGE = new EmptyMessage();
 
+    private MessageUtils() {
+        throw new IllegalStateException(ExceptionMessages.UTILITY_CLASS);
+    }
 
 }

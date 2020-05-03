@@ -53,4 +53,5 @@ public class EmailSending implements Sending {
     public SendType getType() {
         return SendType.PUBLIC;
     }
+
 }
