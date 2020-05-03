@@ -40,7 +40,7 @@
 ```
 <dependency>
     <groupId>org.sadtech.social</groupId>
-    <artifactId>social-bot</artifactId>
+    <artifactId>social-core</artifactId>
     <version>0.6.3-RELEASE</version>
 </dependency>
 ```
