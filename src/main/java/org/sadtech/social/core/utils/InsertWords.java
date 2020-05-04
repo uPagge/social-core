@@ -16,7 +16,7 @@ public class InsertWords {
     private static final Pattern pattern = Pattern.compile("\\{(\\d+)}");
 
     private InsertWords() {
-        throw new IllegalStateException(ExceptionMessages.UTILITY_CLASS);
+        throw new IllegalStateException(Messages.UTILITY_CLASS);
     }
 
     /**

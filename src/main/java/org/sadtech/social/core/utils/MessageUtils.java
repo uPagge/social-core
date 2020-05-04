@@ -13,7 +13,7 @@ public class MessageUtils {
     public static final EmptyMessage EMPTY_MESSAGE = new EmptyMessage();
 
     private MessageUtils() {
-        throw new IllegalStateException(ExceptionMessages.UTILITY_CLASS);
+        throw new IllegalStateException(Messages.UTILITY_CLASS);
     }
 
 }

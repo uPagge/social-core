@@ -5,11 +5,11 @@ package org.sadtech.social.core.utils;
  *
  * @author upagge [15/08/2019]
  */
-public class ExceptionMessages {
+public class Messages {
 
     public static final String UTILITY_CLASS = "Класс утилита";
 
-    private ExceptionMessages() {
+    private Messages() {
         throw new IllegalStateException(UTILITY_CLASS);
     }
 

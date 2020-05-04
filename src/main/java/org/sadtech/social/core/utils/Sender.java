@@ -5,7 +5,7 @@ import org.sadtech.social.core.domain.content.Comment;
 import org.sadtech.social.core.domain.content.Message;
 import org.sadtech.social.core.service.sender.Sending;
 
-import static org.sadtech.social.core.utils.ExceptionMessages.UTILITY_CLASS;
+import static org.sadtech.social.core.utils.Messages.UTILITY_CLASS;
 
 /**
  * Используется для отправки сообщений определенного типа.
