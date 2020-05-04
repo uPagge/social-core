@@ -56,9 +56,23 @@ public class MailRepositoryList implements ContentRepository<Mail> {
         return rezultMails;
     }
 
+    @Override
+    public void deleteAllByAddDateBetween(@NonNull LocalDateTime dateFrom, @NonNull LocalDateTime dateTo) {
+        mails.removeIf(mail -> dateFrom.isBefore(mail.getAddDate()) && dateTo.isAfter(mail.getAddDate()));
+    }
+
+    @Override
+    public void deleteAllByAddDateBefore(LocalDateTime date) {
+        mails.removeIf(mail -> date.isBefore(mail.getAddDate()));
+    }
+
+    @Override
+    public void deleteAllByAddDateAfter(LocalDateTime date) {
+        mails.removeIf(mail -> date.isAfter(mail.getAddDate()));
+    }
+
     private boolean isTimePeriod(@NonNull LocalDateTime dateFrom, @NonNull LocalDateTime dateTo, @NonNull LocalDateTime dateTime) {
         return dateFrom.isBefore(dateTime) && dateTo.isAfter(dateTime);
     }
-
 
 }

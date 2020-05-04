@@ -1,5 +1,6 @@
 package org.sadtech.social.core.service.impl;
 
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.sadtech.social.core.domain.content.Mail;
@@ -68,6 +69,21 @@ public class MailServiceImpl implements MailService {
             oldDateTime = newData;
         }
         return lastEventByAddDateTime;
+    }
+
+    @Override
+    public void deleteAllByAddDateBetween(@NonNull LocalDateTime dateFrom, @NonNull LocalDateTime dateTo) {
+        mailRepository.deleteAllByAddDateBetween(dateFrom, dateTo);
+    }
+
+    @Override
+    public void deleteAllByAddDateBefore(@NonNull LocalDateTime date) {
+        mailRepository.deleteAllByAddDateBefore(date);
+    }
+
+    @Override
+    public void deleteAllByAddDateAfter(@NonNull LocalDateTime date) {
+        mailRepository.deleteAllByAddDateAfter(date);
     }
 
     private List<Mail> getReturnMails(List<Mail> mails) {

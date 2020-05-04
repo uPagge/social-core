@@ -32,4 +32,16 @@ public interface ContentRepository<T extends Message> {
 
     List<T> betweenByAddDateTime(@NonNull LocalDateTime dateFrom, @NonNull LocalDateTime dateTo);
 
+    /**
+     * Удаляет данные за указанный период
+     *
+     * @param dateFrom Дата начала
+     * @param dateTo   Дата окончания
+     */
+    void deleteAllByAddDateBetween(@NonNull LocalDateTime dateFrom, @NonNull LocalDateTime dateTo);
+
+    void deleteAllByAddDateBefore(@NonNull LocalDateTime date);
+
+    void deleteAllByAddDateAfter(@NonNull LocalDateTime date);
+
 }

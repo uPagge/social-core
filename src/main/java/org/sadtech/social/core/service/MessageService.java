@@ -18,26 +18,32 @@ public interface MessageService<T extends Message> {
     /**
      * Получить список сообщений за заданный временной интервал
      *
-     * @param timeFrom Начало интервала
-     * @param timeTo   Конец интервала
+     * @param dateFrom Начало интервала
+     * @param dateTo   Конец интервала
      * @return Список сообщений
      */
-    List<T> getByAddDateTime(@NonNull LocalDateTime timeFrom, @NonNull LocalDateTime timeTo);
+    List<T> getByAddDateTime(@NonNull LocalDateTime dateFrom, @NonNull LocalDateTime dateTo);
 
     /**
      * Получить список ПОСЛЕДНИХ сообщений для каждого пользователя за заданных временной интервал
      *
-     * @param timeFrom Начало интервала
-     * @param timeTo   Конец интервала
+     * @param dateFrom Начало интервала
+     * @param dateTo   Конец интервала
      * @return Список сообщений
      */
-    List<T> getLastEventByCreateDateTime(@NonNull LocalDateTime timeFrom, @NonNull LocalDateTime timeTo);
+    List<T> getLastEventByCreateDateTime(@NonNull LocalDateTime dateFrom, @NonNull LocalDateTime dateTo);
 
-    List<T> getLastEventByAddDateTime(@NonNull LocalDateTime timeFrom, @NonNull LocalDateTime timeTo);
+    List<T> getLastEventByAddDateTime(@NonNull LocalDateTime dateFrom, @NonNull LocalDateTime dateTo);
 
     /**
      * Возвращает новые сообщения от последнего запроса.
      */
     List<T> getNewMessage();
+
+    void deleteAllByAddDateBetween(@NonNull LocalDateTime dateFrom, @NonNull LocalDateTime dateTo);
+
+    void deleteAllByAddDateBefore(@NonNull LocalDateTime date);
+
+    void deleteAllByAddDateAfter(@NonNull LocalDateTime date);
 
 }

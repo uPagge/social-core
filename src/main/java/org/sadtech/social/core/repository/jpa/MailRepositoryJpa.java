@@ -17,8 +17,14 @@ import java.util.List;
 @Repository
 public interface MailRepositoryJpa extends JpaRepository<Mail, Integer> {
 
-    List<Mail> findByCreateDateBetween(LocalDateTime from, LocalDateTime to);
+    List<Mail> findByCreateDateBetween(LocalDateTime dateFrom, LocalDateTime dateTo);
 
-    List<Mail> findByAddDateBetween(LocalDateTime from, LocalDateTime to);
+    List<Mail> findByAddDateBetween(LocalDateTime dateFrom, LocalDateTime dateTo);
+
+    void deleteAllByAddDateBetween(LocalDateTime dateFrom, LocalDateTime dateTo);
+
+    void deleteAllByAddDateBefore(LocalDateTime date);
+
+    void deleteAllByAddDateAfter(LocalDateTime date);
 
 }

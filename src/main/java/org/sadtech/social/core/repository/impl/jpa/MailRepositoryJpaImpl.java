@@ -34,4 +34,19 @@ public class MailRepositoryJpaImpl implements ContentRepository<Mail> {
         return mailRepositoryJpa.findByAddDateBetween(dateFrom, dateTo);
     }
 
+    @Override
+    public void deleteAllByAddDateBetween(@NonNull LocalDateTime dateFrom, @NonNull LocalDateTime dateTo) {
+        mailRepositoryJpa.deleteAllByAddDateBetween(dateFrom, dateTo);
+    }
+
+    @Override
+    public void deleteAllByAddDateBefore(@NonNull LocalDateTime date) {
+        mailRepositoryJpa.deleteAllByAddDateBefore(date);
+    }
+
+    @Override
+    public void deleteAllByAddDateAfter(@NonNull LocalDateTime date) {
+        mailRepositoryJpa.deleteAllByAddDateAfter(date);
+    }
+
 }
