@@ -6,7 +6,7 @@
 
     <groupId>org.sadtech.social</groupId>
     <artifactId>social-core</artifactId>
-    <version>0.7.0-RELEASE</version>
+    <version>0.8.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>Social Core</name>
